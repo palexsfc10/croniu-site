@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Fraunces, Manrope } from "next/font/google";
+import { ServiceWorkerCleanup } from "@/components/pwa/service-worker-cleanup";
 import { siteConfig } from "@/lib/site";
 import "./globals.css";
 
@@ -82,6 +83,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="pt-BR" className={`${manrope.variable} ${fraunces.variable}`}>
       <body className="min-h-screen bg-bg font-sans text-ink antialiased">
+        <ServiceWorkerCleanup />
         {children}
         <script
           type="application/ld+json"
