@@ -7,7 +7,7 @@ Repositório dedicado `croniu-site`, independente do monorepo do produto, branch
 | Item | Valor |
 |---|---|
 | Base SHA (main, antes deste trabalho) | `f7f07a3fb35673e7ff7b1810f70fe9f8034306ed` |
-| SHA final (branch `feature/marketing-site`) | `911240495d94383c544fd05173b68026773e65dd` |
+| SHA final (branch `feature/marketing-site`) | `b6a2b790565b9cc7705183ad56031ca187daa169` |
 | Push realizado | **Não** — trabalho permanece local |
 | Deploy / DNS / merge | **Não realizado** |
 | Alteração no monorepo `C:\projetos\croniu` | **Nenhuma** (verificado via `git status` antes e depois — apenas o estado pré-existente, não relacionado a esta tarefa) |
@@ -18,6 +18,9 @@ Commits nesta branch (do mais antigo ao mais novo, após o commit inicial vazio)
 2. `516fb08` — `feat: add full landing page with all required sections`
 3. `bb0ee45` — `feat: add SEO metadata assets and legal placeholder pages`
 4. `9112404` — `docs: add visual-check script and delivery report`
+5. `b6a2b79` — `docs: fix final commit SHA reference in REPORT.md`
+
+O tip exato após este documento é obtido com `git rev-parse HEAD` na branch `feature/marketing-site`.
 
 ## Estrutura entregue
 
