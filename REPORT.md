@@ -7,7 +7,7 @@ Repositório dedicado `croniu-site`, independente do monorepo do produto, branch
 | Item | Valor |
 |---|---|
 | Base SHA (main, antes deste trabalho) | `f7f07a3fb35673e7ff7b1810f70fe9f8034306ed` |
-| SHA final (branch `feature/marketing-site`) | `bb0ee453f37d18f619feecca3a884c213e40b13d` |
+| SHA final (branch `feature/marketing-site`) | `911240495d94383c544fd05173b68026773e65dd` |
 | Push realizado | **Não** — trabalho permanece local |
 | Deploy / DNS / merge | **Não realizado** |
 | Alteração no monorepo `C:\projetos\croniu` | **Nenhuma** (verificado via `git status` antes e depois — apenas o estado pré-existente, não relacionado a esta tarefa) |
@@ -17,7 +17,7 @@ Commits nesta branch (do mais antigo ao mais novo, após o commit inicial vazio)
 1. `273660d` — `chore: scaffold Next.js 16 marketing site with brand and UI primitives`
 2. `516fb08` — `feat: add full landing page with all required sections`
 3. `bb0ee45` — `feat: add SEO metadata assets and legal placeholder pages`
-4. (este commit) — `docs: add README instructions and delivery report`
+4. `9112404` — `docs: add visual-check script and delivery report`
 
 ## Estrutura entregue
 
