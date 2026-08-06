@@ -1,0 +1,76 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-ink: #152033;
+  --color-bg: #f8f9fc;
+
+  --color-brand-50: #eef0fd;
+  --color-brand-100: #e0e3fb;
+  --color-brand-200: #c2c8f6;
+  --color-brand-300: #9da5ef;
+  --color-brand-400: #7680e6;
+  --color-brand-500: #4f57d8;
+  --color-brand-600: #4640c9;
+  --color-brand-700: #4338ca;
+  --color-brand-800: #372f9e;
+  --color-brand-900: #2f2a7d;
+
+  --color-ai-50: #f5f3ff;
+  --color-ai-100: #ede9fe;
+  --color-ai-200: #ddd6fe;
+  --color-ai-300: #c4b5fd;
+  --color-ai-400: #a78bfa;
+  --color-ai-500: #8b5cf6;
+  --color-ai-600: #7c3aed;
+  --color-ai-700: #6d28d9;
+
+  --color-progress-50: #f0fdfa;
+  --color-progress-100: #ccfbf1;
+  --color-progress-200: #99f6e4;
+  --color-progress-300: #5eead4;
+  --color-progress-400: #2dd4bf;
+  --color-progress-500: #14b8a6;
+  --color-progress-600: #0d9488;
+  --color-progress-700: #0f766e;
+
+  --color-wordmark-from: #152033;
+  --color-wordmark-to: #2f3f8f;
+
+  --font-sans: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-fraunces), Georgia, serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+}
+
+::selection {
+  background-color: var(--color-brand-200);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-brand-700);
+  outline-offset: 2px;
+}
+
+@keyframes croniu-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
