@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { Container } from "@/components/ui/container";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { IconChevronDown } from "@/components/ui/icons";
@@ -17,8 +18,20 @@ const FAQ_ITEMS = [
   },
   {
     question: "Posso cancelar quando quiser?",
-    answer:
-      "Sim, o cancelamento é possível a qualquer momento pela própria conta. A política completa de cancelamento e reembolso ainda está sendo finalizada e será publicada nos Termos de Uso antes do lançamento comercial.",
+    answer: (
+      <>
+        Sim. Basta escrever para{" "}
+        <a href={`mailto:${siteConfig.supportEmail}`} className="font-semibold text-brand-700 underline underline-offset-2">
+          {siteConfig.supportEmail}
+        </a>{" "}
+        ou pelo WhatsApp {siteConfig.supportWhatsapp}. Seu acesso segue disponível até o fim do período já
+        pago. Veja os detalhes completos nos{" "}
+        <Link href="/termos" className="font-semibold text-brand-700 underline underline-offset-2">
+          Termos de Uso
+        </Link>
+        .
+      </>
+    ),
   },
   {
     question: "O Croniu cobra os meus clientes automaticamente?",

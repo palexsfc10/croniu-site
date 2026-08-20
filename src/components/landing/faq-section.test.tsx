@@ -4,11 +4,12 @@ import userEvent from "@testing-library/user-event";
 import { FaqSection } from "./faq-section";
 
 describe("FaqSection", () => {
-  it("is honest about the pending cancellation policy", async () => {
+  it("explains how to cancel and links to the real terms of use", async () => {
     const user = userEvent.setup();
     render(<FaqSection />);
     await user.click(screen.getByRole("button", { name: "Posso cancelar quando quiser?" }));
-    expect(screen.getByText(/política completa de cancelamento/i)).toBeInTheDocument();
+    expect(screen.getByText(/appcroniu@gmail\.com/)).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: "Termos de Uso" })).toHaveAttribute("href", "/termos");
   });
 
   it("clarifies Croniu does not auto-charge the professional's clients", async () => {
