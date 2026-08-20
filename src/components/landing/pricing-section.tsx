@@ -46,7 +46,10 @@ export function PricingSection() {
           <Button href={registerUrl} size="lg" className="w-full">
             Começar grátis por {siteConfig.trialDays} dias
           </Button>
-          <p className="text-center text-xs text-ink/50">Sem cartão de crédito para começar.</p>
+          <p className="text-center text-xs text-ink/50">
+            Sem cartão de crédito para começar. Pagamento processado com segurança pela Asaas — seus
+            dados de cartão nunca passam pelos nossos servidores.
+          </p>
         </div>
       </Container>
     </section>

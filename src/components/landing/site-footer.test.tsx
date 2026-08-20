@@ -15,8 +15,16 @@ describe("SiteFooter", () => {
     expect(screen.getByRole("link", { name: "Termos de uso" })).toHaveAttribute("href", "/termos");
   });
 
-  it("omits the support email when not configured", () => {
+  it("shows the default support email", () => {
     render(<SiteFooter />);
-    expect(screen.queryByRole("link", { name: /@/ })).not.toBeInTheDocument();
+    expect(screen.getByRole("link", { name: "appcroniu@gmail.com" })).toHaveAttribute(
+      "href",
+      "mailto:appcroniu@gmail.com",
+    );
+  });
+
+  it("shows the legal entity and CNPJ", () => {
+    render(<SiteFooter />);
+    expect(screen.getByText(/CNPJ 31\.892\.140\/0001-45/)).toBeInTheDocument();
   });
 });
