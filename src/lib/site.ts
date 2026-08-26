@@ -29,7 +29,6 @@ export const siteConfig = {
   supportEmail: process.env.NEXT_PUBLIC_SUPPORT_EMAIL || DEFAULT_SUPPORT_EMAIL,
   supportWhatsapp: "(11) 98450-8374",
   aiActionDemosEnabled: readBoolEnv(process.env.NEXT_PUBLIC_AI_ACTION_DEMOS, false),
-  analyticsEnabled: readBoolEnv(process.env.NEXT_PUBLIC_ANALYTICS_ENABLED, false),
 } as const;
 
 /**

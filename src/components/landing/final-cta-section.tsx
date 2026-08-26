@@ -1,6 +1,6 @@
-import { Button } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
 import { IconArrowRight } from "@/components/ui/icons";
+import { AppCtaLink } from "@/components/landing/app-cta-link";
 import { registerUrl, siteConfig } from "@/lib/site";
 
 export function FinalCtaSection() {
@@ -15,10 +15,17 @@ export function FinalCtaSection() {
             {siteConfig.trialDays} dias grátis, sem cartão de crédito. Configure seus primeiros
             clientes em minutos.
           </p>
-          <Button href={registerUrl} size="lg" className="bg-white text-ink hover:bg-white/90">
+          <AppCtaLink
+            href={registerUrl}
+            intent="register"
+            ctaName="comecar_gratis_final"
+            ctaLocation="final_cta"
+            size="lg"
+            className="bg-white text-ink hover:bg-white/90"
+          >
             Começar grátis por {siteConfig.trialDays} dias
             <IconArrowRight width={18} height={18} />
-          </Button>
+          </AppCtaLink>
         </div>
       </Container>
     </section>

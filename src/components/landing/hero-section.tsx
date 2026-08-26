@@ -1,8 +1,9 @@
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
 import { IconArrowRight } from "@/components/ui/icons";
 import { registerUrl } from "@/lib/site";
+import { AppCtaLink } from "./app-cta-link";
+import { HeroSecondaryCta } from "./hero-secondary-cta";
 import { AiChatDemo } from "./ai-chat-demo";
 import { CycleCardsStack } from "./cycle-cards-stack";
 
@@ -30,13 +31,25 @@ export function HeroSection() {
           </p>
 
           <div className="flex flex-col gap-3 sm:flex-row">
-            <Button href={registerUrl} size="lg">
+            <AppCtaLink
+              href={registerUrl}
+              intent="register"
+              ctaName="comecar_gratis_7_dias"
+              ctaLocation="hero"
+              size="lg"
+            >
               Começar grátis por 7 dias
               <IconArrowRight width={18} height={18} />
-            </Button>
-            <Button href="#como-funciona" variant="secondary" size="lg">
+            </AppCtaLink>
+            <HeroSecondaryCta
+              href="#como-funciona"
+              ctaName="ver_como_funciona"
+              ctaLocation="hero"
+              variant="secondary"
+              size="lg"
+            >
               Ver como funciona
-            </Button>
+            </HeroSecondaryCta>
           </div>
 
           <p className="text-sm text-ink/50">Sem cartão de crédito. Cancele quando quiser.</p>

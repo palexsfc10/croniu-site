@@ -1,7 +1,8 @@
-import { Button } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { IconCheck } from "@/components/ui/icons";
+import { AppCtaLink } from "@/components/landing/app-cta-link";
+import { PricingViewTracker } from "@/components/landing/pricing-view-tracker";
 import { formatPriceBRL, registerUrl, siteConfig } from "@/lib/site";
 
 const INCLUDED_ITEMS = [
@@ -15,6 +16,7 @@ const INCLUDED_ITEMS = [
 export function PricingSection() {
   return (
     <section id="preco" className="py-20 sm:py-28">
+      <PricingViewTracker />
       <Container className="flex flex-col gap-14">
         <SectionHeading
           eyebrow="Preço simples"
@@ -43,9 +45,16 @@ export function PricingSection() {
             ))}
           </ul>
 
-          <Button href={registerUrl} size="lg" className="w-full">
+          <AppCtaLink
+            href={registerUrl}
+            intent="register"
+            ctaName="comecar_gratis_planos"
+            ctaLocation="pricing"
+            size="lg"
+            className="w-full"
+          >
             Começar grátis por {siteConfig.trialDays} dias
-          </Button>
+          </AppCtaLink>
           <p className="text-center text-xs text-ink/50">
             Sem cartão de crédito para começar. Pagamento processado com segurança pela Asaas — seus
             dados de cartão nunca passam pelos nossos servidores.

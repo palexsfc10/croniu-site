@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { BrandWordmark } from "@/components/brand";
 import { Container } from "@/components/ui/container";
+import { CookiePreferencesLink } from "@/components/analytics/cookie-preferences-link";
 import { currentYear, legalConfig, siteConfig } from "@/lib/site";
 
 export function SiteFooter() {
@@ -25,6 +26,7 @@ export function SiteFooter() {
             <Link href="/termos" className="hover:text-ink">
               Termos de uso
             </Link>
+            <CookiePreferencesLink />
             {siteConfig.supportEmail ? (
               <a href={`mailto:${siteConfig.supportEmail}`} className="hover:text-ink">
                 {siteConfig.supportEmail}

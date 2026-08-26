@@ -3,9 +3,9 @@
 import { useState } from "react";
 import Link from "next/link";
 import { BrandWordmark } from "@/components/brand";
-import { Button } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
 import { IconClose, IconMenu } from "@/components/ui/icons";
+import { AppCtaLink } from "@/components/landing/app-cta-link";
 import { loginUrl, registerUrl } from "@/lib/site";
 
 const NAV_LINKS = [
@@ -39,12 +39,26 @@ export function SiteHeader() {
         </nav>
 
         <div className="hidden items-center gap-3 lg:flex">
-          <Button href={loginUrl} variant="ghost" size="md">
+          <AppCtaLink
+            href={loginUrl}
+            intent="login"
+            ctaName="entrar"
+            ctaLocation="header"
+            variant="ghost"
+            size="md"
+          >
             Entrar
-          </Button>
-          <Button href={registerUrl} variant="primary" size="md">
+          </AppCtaLink>
+          <AppCtaLink
+            href={registerUrl}
+            intent="register"
+            ctaName="comecar_gratis"
+            ctaLocation="header"
+            variant="primary"
+            size="md"
+          >
             Começar grátis
-          </Button>
+          </AppCtaLink>
         </div>
 
         <button
@@ -73,12 +87,28 @@ export function SiteHeader() {
               </a>
             ))}
             <div className="mt-2 flex flex-col gap-2 px-3">
-              <Button href={loginUrl} variant="secondary" size="md" className="w-full">
+              <AppCtaLink
+                href={loginUrl}
+                intent="login"
+                ctaName="entrar"
+                ctaLocation="header"
+                variant="secondary"
+                size="md"
+                className="w-full"
+              >
                 Entrar
-              </Button>
-              <Button href={registerUrl} variant="primary" size="md" className="w-full">
+              </AppCtaLink>
+              <AppCtaLink
+                href={registerUrl}
+                intent="register"
+                ctaName="comecar_gratis"
+                ctaLocation="header"
+                variant="primary"
+                size="md"
+                className="w-full"
+              >
                 Começar grátis
-              </Button>
+              </AppCtaLink>
             </div>
           </Container>
         </div>

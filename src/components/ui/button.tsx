@@ -25,7 +25,7 @@ type CommonProps = {
 const BASE_CLASSES =
   "inline-flex items-center justify-center gap-2 rounded-full font-semibold transition-colors duration-150 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 disabled:opacity-50 disabled:pointer-events-none";
 
-type LinkButtonProps = CommonProps &
+export type LinkButtonProps = CommonProps &
   AnchorHTMLAttributes<HTMLAnchorElement> & {
     href: string;
   };
