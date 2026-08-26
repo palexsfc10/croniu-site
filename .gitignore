@@ -36,5 +36,6 @@ next-env.d.ts
 *.tsbuildinfo
 next-env.d.ts
 
-# local visual capture
+# local visual capture / performance audits
 scripts/screenshots/
+scripts/lighthouse-*.json

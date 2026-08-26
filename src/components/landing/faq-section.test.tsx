@@ -1,9 +1,29 @@
-import { describe, expect, it } from "vitest";
-import { render, screen } from "@testing-library/react";
+import { afterEach, describe, expect, it, vi } from "vitest";
+import { cleanup, render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { FaqSection } from "./faq-section";
+import { trackFaqInteraction } from "@/lib/analytics/gtm";
+
+vi.mock("@/lib/analytics/gtm", () => ({
+  trackFaqInteraction: vi.fn(),
+}));
 
 describe("FaqSection", () => {
+  afterEach(() => {
+    cleanup();
+    vi.clearAllMocks();
+  });
+
+  it("tracks faq_interaction with a stable id, never the raw question text", async () => {
+    const user = userEvent.setup();
+    render(<FaqSection />);
+    const button = screen.getByRole("button", { name: "O que acontece quando o teste grátis termina?" });
+    await user.click(button);
+    expect(trackFaqInteraction).toHaveBeenCalledWith({ question_id: "fim_teste_gratis", action: "open" });
+    await user.click(button);
+    expect(trackFaqInteraction).toHaveBeenCalledWith({ question_id: "fim_teste_gratis", action: "close" });
+  });
+
   it("explains how to cancel and links to the real terms of use", async () => {
     const user = userEvent.setup();
     render(<FaqSection />);

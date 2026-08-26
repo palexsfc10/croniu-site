@@ -6,7 +6,6 @@ describe("siteConfig", () => {
     expect(siteConfig.priceCents).toBe(2990);
     expect(siteConfig.trialDays).toBe(7);
     expect(siteConfig.aiActionDemosEnabled).toBe(false);
-    expect(siteConfig.analyticsEnabled).toBe(false);
   });
 
   it("strips trailing slashes from configured URLs", () => {

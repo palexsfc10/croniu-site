@@ -1,6 +1,13 @@
 import type { Metadata, Viewport } from "next";
 import { Fraunces, Manrope } from "next/font/google";
 import { ServiceWorkerCleanup } from "@/components/pwa/service-worker-cleanup";
+import {
+  GtmConsentDefaultScript,
+  GtmContainerScript,
+  GtmNoscriptFallback,
+} from "@/components/analytics/gtm-scripts";
+import { ConsentBanner } from "@/components/analytics/consent-banner";
+import { RoutePageviewTracker } from "@/components/analytics/route-pageview-tracker";
 import { siteConfig } from "@/lib/site";
 import "./globals.css";
 
@@ -64,7 +71,7 @@ export const viewport: Viewport = {
   themeColor: "#152033",
 };
 
-const organizationJsonLd = {
+const softwareApplicationJsonLd = {
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
   name: "Croniu",
@@ -79,12 +86,31 @@ const organizationJsonLd = {
   },
 };
 
+const organizationJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "Croniu",
+  url: siteConfig.siteUrl,
+  logo: `${siteConfig.siteUrl}/icons/icon.svg`,
+};
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="pt-BR" className={`${manrope.variable} ${fraunces.variable}`}>
+      <head>
+        <GtmConsentDefaultScript />
+        <GtmContainerScript />
+      </head>
       <body className="min-h-screen bg-bg font-sans text-ink antialiased">
+        <GtmNoscriptFallback />
         <ServiceWorkerCleanup />
+        <RoutePageviewTracker />
         {children}
+        <ConsentBanner />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareApplicationJsonLd) }}
+        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}

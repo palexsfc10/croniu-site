@@ -5,18 +5,22 @@ import Link from "next/link";
 import { Container } from "@/components/ui/container";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { IconChevronDown } from "@/components/ui/icons";
+import { trackFaqInteraction } from "@/lib/analytics/gtm";
 import { formatPriceBRL, siteConfig } from "@/lib/site";
 
 const FAQ_ITEMS = [
   {
+    id: "cartao_credito",
     question: `Preciso de cartão de crédito para testar?`,
     answer: `Não. Você começa os ${siteConfig.trialDays} dias de teste grátis sem informar cartão de crédito.`,
   },
   {
+    id: "fim_teste_gratis",
     question: "O que acontece quando o teste grátis termina?",
     answer: `Para continuar usando, a assinatura passa a ser cobrada em ${formatPriceBRL()} por mês, referente à sua conta de profissional.`,
   },
   {
+    id: "cancelamento",
     question: "Posso cancelar quando quiser?",
     answer: (
       <>
@@ -34,16 +38,19 @@ const FAQ_ITEMS = [
     ),
   },
   {
+    id: "cobranca_automatica",
     question: "O Croniu cobra os meus clientes automaticamente?",
     answer:
       "Não. O Croniu ajuda você a acompanhar recebimentos e vencimentos, mas a cobrança dos seus clientes finais continua sendo feita por você, fora da plataforma.",
   },
   {
+    id: "ia_altera_dados",
     question: "A IA consegue alterar dados sozinha?",
     answer:
       "A IA responde perguntas com dados reais da sua conta (ciclos, recebimentos, agenda). Ações que mudam algo na sua operação sempre exigem sua confirmação explícita antes de acontecer.",
   },
   {
+    id: "tipos_atendimento",
     question: "O Croniu funciona para qualquer tipo de atendimento recorrente?",
     answer:
       "Foi desenhado para profissionais autônomos com clientes recorrentes em ciclos — aulas, sessões e atendimentos que se repetem, como dança, artes marciais, música, idiomas, reforço escolar, pilates, yoga e treinamento esportivo.",
@@ -70,7 +77,10 @@ export function FaqSection() {
                   id={buttonId}
                   aria-expanded={isOpen}
                   aria-controls={panelId}
-                  onClick={() => setOpenIndex(isOpen ? null : index)}
+                  onClick={() => {
+                    trackFaqInteraction({ question_id: item.id, action: isOpen ? "close" : "open" });
+                    setOpenIndex(isOpen ? null : index);
+                  }}
                   className="flex w-full items-center justify-between gap-4 px-6 py-5 text-left"
                 >
                   <span className="font-medium text-ink">{item.question}</span>
