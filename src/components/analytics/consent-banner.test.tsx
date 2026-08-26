@@ -70,6 +70,56 @@ describe("ConsentBanner", () => {
     expect(screen.queryByRole("dialog", { name: "Preferências de cookies" })).not.toBeInTheDocument();
   });
 
+  it('"Recusar opcionais" pushes a consent update with every category denied', async () => {
+    vi.stubEnv("NODE_ENV", "production");
+    vi.stubEnv("NEXT_PUBLIC_GTM_ID", "GTM-NVQ74CPL");
+    window.dataLayer = undefined;
+    const user = userEvent.setup();
+    const { ConsentBanner } = await loadBanner();
+    render(<ConsentBanner />);
+    await user.click(await screen.findByRole("button", { name: "Recusar opcionais" }));
+
+    expect(window.dataLayer).toContainEqual([
+      "consent",
+      "update",
+      {
+        ad_storage: "denied",
+        ad_user_data: "denied",
+        ad_personalization: "denied",
+        analytics_storage: "denied",
+      },
+    ]);
+    expect(JSON.parse(window.localStorage.getItem("croniu_consent_v1") ?? "null")).toEqual({
+      analytics: false,
+      marketing: false,
+    });
+  });
+
+  it('"Aceitar todos" pushes a consent update with every category granted', async () => {
+    vi.stubEnv("NODE_ENV", "production");
+    vi.stubEnv("NEXT_PUBLIC_GTM_ID", "GTM-NVQ74CPL");
+    window.dataLayer = undefined;
+    const user = userEvent.setup();
+    const { ConsentBanner } = await loadBanner();
+    render(<ConsentBanner />);
+    await user.click(await screen.findByRole("button", { name: "Aceitar todos" }));
+
+    expect(window.dataLayer).toContainEqual([
+      "consent",
+      "update",
+      {
+        ad_storage: "granted",
+        ad_user_data: "granted",
+        ad_personalization: "granted",
+        analytics_storage: "granted",
+      },
+    ]);
+    expect(JSON.parse(window.localStorage.getItem("croniu_consent_v1") ?? "null")).toEqual({
+      analytics: true,
+      marketing: true,
+    });
+  });
+
   it("reopens from the footer's cookie-preferences event and restores the stored choice", async () => {
     vi.stubEnv("NODE_ENV", "production");
     vi.stubEnv("NEXT_PUBLIC_GTM_ID", "GTM-NVQ74CPL");

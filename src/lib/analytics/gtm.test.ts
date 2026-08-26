@@ -31,6 +31,23 @@ describe("gtm", () => {
     expect(isGtmEnabled()).toBe(true);
   });
 
+  it("is disabled in Development (next dev), matching an unset id in that environment", async () => {
+    vi.stubEnv("NODE_ENV", "development");
+    vi.stubEnv("NEXT_PUBLIC_GTM_ID", "");
+    const { isGtmEnabled } = await import("./gtm");
+    expect(isGtmEnabled()).toBe(false);
+  });
+
+  it("is disabled in a Preview-style build (NODE_ENV=production) when the id was left unset for that scope", async () => {
+    // Vercel Preview deployments build with NODE_ENV=production too — the
+    // only thing that keeps GTM off there is not scoping the env var to
+    // Preview. This locks in that the id (not NODE_ENV alone) is the gate.
+    vi.stubEnv("NODE_ENV", "production");
+    vi.stubEnv("NEXT_PUBLIC_GTM_ID", "");
+    const { isGtmEnabled } = await import("./gtm");
+    expect(isGtmEnabled()).toBe(false);
+  });
+
   it("never pushes to dataLayer when disabled", async () => {
     vi.stubEnv("NODE_ENV", "test");
     vi.stubEnv("NEXT_PUBLIC_GTM_ID", "");

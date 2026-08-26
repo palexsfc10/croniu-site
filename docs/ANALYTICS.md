@@ -60,35 +60,55 @@ risco de o contêiner ser instalado mais de uma vez.
 
 ## Eventos implementados
 
-| Evento | Onde dispara | Parâmetros |
-|---|---|---|
-| `page_view` | Carga inicial + toda mudança real de rota (`RoutePageviewTracker`, via `usePathname`) | `page_location`, `page_path`, `page_title`, `page_referrer?` |
-| `cta_click` | Todo clique em CTA (header, hero, pricing, final_cta) | `cta_name`, `cta_location`, `destination` |
-| `sign_up_start` | Clique num CTA que leva a `/register` | `source`, `cta_location` |
-| `login_start` | Clique num CTA que leva a `/login` | `cta_location` |
-| `pricing_view` | Seção de preço entra ≥20% no viewport (uma vez por pageview) | — |
-| `faq_interaction` | Abrir/fechar uma pergunta do FAQ | `question_id` (slug estável, nunca o texto da pergunta), `action: "open"\|"close"` |
-| `feature_view` | **Não implementado** — `features-bento-section.tsx` é uma grade estática, sem abas/carrossel/modal. Helper `trackFeatureView` já existe em `gtm.ts`, pronto para uso se essa seção ganhar um componente interativo no futuro. |
-| `whatsapp_click` | **Não implementado** — o site não tem hoje nenhum link clicável para WhatsApp (o número aparece como texto no FAQ/Termos, não como link `wa.me`). Helper `trackWhatsappClick` já existe em `gtm.ts`; use-o assim que um CTA de WhatsApp real for adicionado. |
+`cta_location`/`source` usam um enum fechado: `header | hero | features | pricing | final_cta`.
 
-`cta_location` usa um enum fechado: `header | hero | features | pricing | final_cta`.
+> ⚠️ **Obrigatório na Google Tag (GA4 Configuration) dentro do GTM**: o campo
+> **"Send a page view event when this configuration loads"** deve ficar
+> **desmarcado (`send_page_view = false`)**. O `page_view` deste site é 100%
+> manual (`route-pageview-tracker.tsx`) porque o App Router do Next.js não
+> recarrega a página em navegações internas — se a Google Tag mandar o
+> pageview automático além do nosso evento customizado, **todo pageview seria
+> contado em dobro**. Crie um gatilho de "Evento personalizado" ouvindo
+> `page_view` e associe a ele a tag de evento GA4 correspondente, no lugar do
+> pageview automático.
 
-### Por que `page_view` é disparado manualmente
+| Evento | Gatilho (Custom Event) | Parâmetros | Exemplo real de objeto no `dataLayer` |
+|---|---|---|---|
+| `page_view` | Carga inicial + toda mudança real de rota (`RoutePageviewTracker`, via `usePathname`, com guarda por `ref` contra duplicação no primeiro load / Strict Mode) | `page_location`, `page_path`, `page_title`, `page_referrer?` | `{ event: "page_view", page_location: "https://croniu.com.br/", page_path: "/", page_title: "Croniu — sua rotina organizada, com uma IA trabalhando com você", page_referrer: "https://www.google.com/" }` |
+| `cta_click` | Clique em qualquer CTA (header, hero, pricing, final_cta) | `cta_name`, `cta_location`, `destination` | `{ event: "cta_click", cta_name: "comecar_gratis", cta_location: "header", destination: "register" }` |
+| `sign_up_start` | Clique num CTA que leva a `/register` | `source`, `cta_location` | `{ event: "sign_up_start", source: "header", cta_location: "header" }` |
+| `login_start` | Clique num CTA que leva a `/login` | `cta_location` | `{ event: "login_start", cta_location: "header" }` |
+| `pricing_view` | Seção de preço entra ≥20% no viewport, via `IntersectionObserver` (dispara uma única vez por pageview, com guarda por `ref` + `observer.disconnect()`) | — | `{ event: "pricing_view" }` |
+| `faq_interaction` | Abrir/fechar uma pergunta do FAQ | `question_id` (slug estável, nunca o texto da pergunta), `action: "open"\|"close"` | `{ event: "faq_interaction", question_id: "cancelamento", action: "open" }` |
+| `feature_view` | **Reservado, sem gatilho real hoje** — `features-bento-section.tsx` é uma grade estática, sem abas/carrossel/modal. Helper `trackFeatureView` já existe em `gtm.ts`. | `feature_id` | `{ event: "feature_view", feature_id: "portal_cliente" }` |
+| `whatsapp_click` | **Reservado, sem gatilho real hoje** — o site não tem nenhum link clicável para WhatsApp (o número aparece como texto no FAQ/Termos, não como link `wa.me`). Helper `trackWhatsappClick` já existe em `gtm.ts`. | `cta_location` | `{ event: "whatsapp_click", cta_location: "final_cta" }` |
 
-O App Router do Next.js não recarrega a página em navegações internas. Em vez
-de depender do listener de "History Change" do GTM (que pode duplicar ou
-faltar dependendo de como a tag é configurada), o código dispara um evento
-customizado `page_view` no dataLayer a cada mudança real de `pathname`
-(`route-pageview-tracker.tsx`), com uma guarda por `ref` que impede duplicação
-no primeiro carregamento (inclusive sob o duplo-render do React Strict Mode em
-dev).
+### Variáveis de camada de dados (Data Layer Variables) a criar no GTM
 
-**Configuração necessária dentro do GTM** (feita no painel web do GTM — fora
-do escopo deste repositório): na tag "Configuração do Google" (GA4), desative
-o envio automático de `page_view` e crie um gatilho de "Evento
-personalizado" ouvindo `page_view`, disparando a tag de evento
-correspondente. Isso evita pageview duplicado (um do listener padrão do GTM +
-um do nosso evento customizado).
+Para os gatilhos acima conseguirem ler os parâmetros e repassá-los para a tag
+GA4, crie uma **Variável → Camada de dados** no GTM para cada chave abaixo
+(nome da variável na camada de dados = nome da coluna "Chave"):
+
+| Chave | Usada em |
+|---|---|
+| `page_location` | `page_view` |
+| `page_path` | `page_view` |
+| `page_title` | `page_view` |
+| `page_referrer` | `page_view` |
+| `cta_name` | `cta_click` |
+| `cta_location` | `cta_click`, `sign_up_start`, `login_start`, `whatsapp_click` |
+| `destination` | `cta_click` |
+| `source` | `sign_up_start` |
+| `question_id` | `faq_interaction` |
+| `action` | `faq_interaction` |
+| `feature_id` | `feature_view` |
+
+Isso é **11 variáveis de camada de dados** + **8 gatilhos de evento
+personalizado** (um por nome de evento na primeira coluna da tabela acima,
+incluindo os 2 reservados). Consent Mode (`analytics_storage`, `ad_storage`,
+`ad_user_data`, `ad_personalization`) **não** precisa de variável — é lido
+pelo suporte nativo a Consent Mode do próprio GTM (Configurações do
+contêiner → Consent Mode overview), não por uma Data Layer Variable comum.
 
 ## UTMs, gclid e a jornada entre os dois domínios
 
