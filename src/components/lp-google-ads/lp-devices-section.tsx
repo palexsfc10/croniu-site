@@ -24,7 +24,8 @@ export function LpDevicesSection() {
               src="/images/lp-personal-trainer/home-desktop.png"
               alt="Croniu aberto no computador, com visão completa do dia e do financeiro"
               width={1918}
-              height={907}
+              height={870}
+              sizes="(min-width: 1024px) 611px, calc(100vw - 32px)"
             />
           </div>
 
@@ -39,6 +40,7 @@ export function LpDevicesSection() {
               width={382}
               height={829}
               frame="phone"
+              sizes="280px"
             />
           </div>
         </div>

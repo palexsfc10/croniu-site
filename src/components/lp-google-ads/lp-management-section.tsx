@@ -23,8 +23,8 @@ const TABS = [
     label: "Alunos",
     icon: IconUsers,
     src: "/images/lp-personal-trainer/alunos-lista.png",
-    width: 1914,
-    height: 904,
+    width: 1668,
+    height: 500,
     alt: "Lista de alunos do Croniu com colunas de atendimento, agenda, evolução, financeiro, renovação e atenção",
   },
   {
@@ -41,8 +41,8 @@ const TABS = [
     label: "Financeiro",
     icon: IconWallet,
     src: "/images/lp-personal-trainer/financeiro.png",
-    width: 1879,
-    height: 901,
+    width: 1633,
+    height: 800,
     alt: "Painel financeiro do Croniu com recebido no mês, previsto, vencidos e evolução do recebido",
   },
 ] as const;
@@ -90,6 +90,7 @@ export function LpManagementSection() {
           alt={active.alt}
           width={active.width}
           height={active.height}
+          sizes="(min-width: 1024px) 896px, (min-width: 640px) calc(100vw - 48px), calc(100vw - 32px)"
           className="mx-auto max-w-4xl"
         />
       </Container>

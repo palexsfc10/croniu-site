@@ -32,6 +32,7 @@ export function LpStepsSection() {
             alt="Modal de convite de aluno do Croniu, com opção de enviar pelo WhatsApp ou copiar o link"
             width={1596}
             height={622}
+            sizes="(min-width: 1024px) 524px, calc(100vw - 32px)"
           />
 
           <ol className="flex flex-col gap-6">

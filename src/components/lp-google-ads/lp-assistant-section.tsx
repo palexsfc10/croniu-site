@@ -33,6 +33,7 @@ export function LpAssistantSection() {
             width={390}
             height={901}
             frame="phone"
+            sizes="280px"
           />
         </div>
       </Container>

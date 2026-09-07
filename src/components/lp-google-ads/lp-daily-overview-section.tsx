@@ -16,8 +16,9 @@ export function LpDailyOverviewSection() {
         <ProductScreenshot
           src="/images/lp-personal-trainer/rotinas-dia.png"
           alt="Tela de rotinas do Croniu com pendências atrasadas e próximas, organizadas por aluno e prazo"
-          width={1885}
+          width={1639}
           height={901}
+          sizes="(min-width: 1024px) 524px, calc(100vw - 32px)"
         />
       </Container>
     </section>

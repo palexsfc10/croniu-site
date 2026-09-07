@@ -58,14 +58,23 @@ src/components/landing/
 Tudo é montado uma única vez em `src/app/layout.tsx` (raiz), então não há
 risco de o contêiner ser instalado mais de uma vez.
 
-### Landing page de Google Ads (`/lp/personal-trainer`)
+### Landing page de Google Ads (`/personal-trainer`)
 
 Vive sob o mesmo `layout.tsx` raiz — herda GTM, Consent Mode e o
 `RoutePageviewTracker` automaticamente, sem nenhum código de analytics
 próprio. A página é marcada `robots: { index: false, follow: true }`
 (prática padrão para LP de campanha paga: evita conteúdo duplicado com a home
 nos resultados orgânicos; não afeta a campanha do Google Ads, que não
-depende de indexação) e não entra em `sitemap.ts`.
+depende de indexação) e não entra em `sitemap.ts`. Canonical:
+`https://croniu.com.br/personal-trainer`.
+
+A rota anterior, `/lp/personal-trainer`, foi removida e substituída por um
+redirect 308 permanente (`next.config.ts`, `redirects()`) para
+`/personal-trainer`, preservando toda a query string (UTM/gclid) — os
+anúncios que já apontam para a URL antiga continuam funcionando. O redirect
+acontece na camada de roteamento do Next.js, antes de qualquer render React,
+então não há segunda instância de `page_view`: o `RoutePageviewTracker` só
+dispara uma vez, na URL final.
 
 Componentes em `src/components/lp-google-ads/` reaproveitam os helpers de
 `src/lib/analytics/` e `app-cta-link.tsx` sem alteração — só adicionam novos
@@ -84,7 +93,7 @@ visível, para as duas nunca ficarem sobrepostas.
 `cta_location`/`source` usam um enum fechado: `header | hero | features | pricing |
 final_cta | lp_ads_header | lp_ads_hero | lp_ads_final_cta | lp_ads_sticky`. Os
 quatro últimos valores são exclusivos da landing page de Google Ads
-(`/lp/personal-trainer`, `src/components/lp-google-ads/`) — mesmos eventos e
+(`/personal-trainer`, `src/components/lp-google-ads/`) — mesmos eventos e
 helpers da home, só um `cta_location` diferente por posição do CTA naquela
 página (header, hero, CTA final e a barra fixa do mobile — a seção de 3 passos
 não tem CTA próprio, só o screenshot e a lista numerada).

@@ -16,7 +16,8 @@ export function LpProductVisualSection() {
           src="/images/lp-personal-trainer/home-desktop.png"
           alt="Tela inicial do Croniu mostrando itens que precisam de decisão, financeiro do mês e próximo compromisso"
           width={1918}
-          height={907}
+          height={870}
+          sizes="(min-width: 1024px) 1088px, calc(100vw - 32px)"
           priority
         />
         <SectionViewTracker featureId="lp_ads_visual" />

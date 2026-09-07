@@ -8,7 +8,18 @@ type ProductScreenshotProps = {
   height: number;
   frame?: "browser" | "phone" | "none";
   priority?: boolean;
-  sizes?: string;
+  /**
+   * Required, no fallback default: must reflect the real rendered CSS width
+   * of this image's container at each breakpoint (not a guess). A `sizes`
+   * value smaller than the true display width makes Next.js request an
+   * undersized source, which shows up as soft/blurry text once the browser
+   * stretches it back up to the real container width — measure the actual
+   * `clientWidth` before writing this string. Ignored for `frame="phone"`,
+   * which always renders at a fixed 280px regardless of viewport.
+   */
+  sizes: string;
+  /** 90-100 for screenshots with UI text — the default 75 visibly softens small text. */
+  quality?: number;
   className?: string;
 };
 
@@ -24,11 +35,21 @@ export function ProductScreenshot({
   height,
   frame = "browser",
   priority = false,
-  sizes = "(min-width: 1024px) 640px, 100vw",
+  sizes,
+  quality = 92,
   className,
 }: ProductScreenshotProps) {
   const image = (
-    <Image src={src} alt={alt} width={width} height={height} priority={priority} sizes={sizes} className="h-auto w-full" />
+    <Image
+      src={src}
+      alt={alt}
+      width={width}
+      height={height}
+      priority={priority}
+      quality={quality}
+      sizes={frame === "phone" ? "280px" : sizes}
+      className="h-auto w-full"
+    />
   );
 
   if (frame === "phone") {

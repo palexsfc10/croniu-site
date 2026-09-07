@@ -11,14 +11,14 @@ import { LpStepsSection } from "@/components/lp-google-ads/lp-steps-section";
 import { LpFaqSection } from "@/components/lp-google-ads/lp-faq-section";
 import { LpFinalCtaSection } from "@/components/lp-google-ads/lp-final-cta-section";
 import { LpStickyCtaBar } from "@/components/lp-google-ads/lp-sticky-cta-bar";
-import { SiteFooter } from "@/components/landing/site-footer";
+import { LpFooter } from "@/components/lp-google-ads/lp-footer";
 
 export const metadata: Metadata = {
   title: "Para personal trainers: organize agenda, ciclos e renovações",
   description:
     "O Croniu mostra todo dia o que precisa da sua atenção — renovações, recebimentos e agenda dos seus alunos — e a Cronia ajuda você a resolver, sempre com sua confirmação antes de agir.",
   alternates: {
-    canonical: "/lp/personal-trainer",
+    canonical: "/personal-trainer",
   },
   robots: {
     index: false,
@@ -43,7 +43,7 @@ export default function PersonalTrainerLpPage() {
           <LpFaqSection />
           <LpFinalCtaSection />
         </main>
-        <SiteFooter />
+        <LpFooter />
       </div>
       <LpStickyCtaBar />
     </>
