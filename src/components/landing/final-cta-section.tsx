@@ -20,8 +20,8 @@ export function FinalCtaSection() {
             intent="register"
             ctaName="comecar_gratis_final"
             ctaLocation="final_cta"
+            variant="secondary"
             size="lg"
-            className="bg-white text-ink hover:bg-white/90"
           >
             Começar grátis por {siteConfig.trialDays} dias
             <IconArrowRight width={18} height={18} />
