@@ -58,9 +58,36 @@ src/components/landing/
 Tudo é montado uma única vez em `src/app/layout.tsx` (raiz), então não há
 risco de o contêiner ser instalado mais de uma vez.
 
+### Landing page de Google Ads (`/lp/personal-trainer`)
+
+Vive sob o mesmo `layout.tsx` raiz — herda GTM, Consent Mode e o
+`RoutePageviewTracker` automaticamente, sem nenhum código de analytics
+próprio. A página é marcada `robots: { index: false, follow: true }`
+(prática padrão para LP de campanha paga: evita conteúdo duplicado com a home
+nos resultados orgânicos; não afeta a campanha do Google Ads, que não
+depende de indexação) e não entra em `sitemap.ts`.
+
+Componentes em `src/components/lp-google-ads/` reaproveitam os helpers de
+`src/lib/analytics/` e `app-cta-link.tsx` sem alteração — só adicionam novos
+valores de `cta_location` (acima) e ativam `feature_view` para visualização
+de seção.
+
+A página tem uma barra de CTA fixa no mobile (`lp-sticky-cta-bar.tsx`, abaixo
+de 1024px). Como o banner de cookies também é fixo na base da tela
+(`consent-banner.tsx`, `z-[60]`), a barra escuta o evento
+`CONSENT_BANNER_VISIBILITY_EVENT` (disparado pelo próprio `ConsentBanner`
+sempre que sua visibilidade muda) e fica oculta enquanto o banner estiver
+visível, para as duas nunca ficarem sobrepostas.
+
 ## Eventos implementados
 
-`cta_location`/`source` usam um enum fechado: `header | hero | features | pricing | final_cta`.
+`cta_location`/`source` usam um enum fechado: `header | hero | features | pricing |
+final_cta | lp_ads_header | lp_ads_hero | lp_ads_final_cta | lp_ads_sticky`. Os
+quatro últimos valores são exclusivos da landing page de Google Ads
+(`/lp/personal-trainer`, `src/components/lp-google-ads/`) — mesmos eventos e
+helpers da home, só um `cta_location` diferente por posição do CTA naquela
+página (header, hero, CTA final e a barra fixa do mobile — a seção de 3 passos
+não tem CTA próprio, só o screenshot e a lista numerada).
 
 > ⚠️ **Obrigatório na Google Tag (GA4 Configuration) dentro do GTM**: o campo
 > **"Send a page view event when this configuration loads"** deve ficar
@@ -80,7 +107,7 @@ risco de o contêiner ser instalado mais de uma vez.
 | `login_start` | Clique num CTA que leva a `/login` | `cta_location` | `{ event: "login_start", cta_location: "header" }` |
 | `pricing_view` | Seção de preço entra ≥20% no viewport, via `IntersectionObserver` (dispara uma única vez por pageview, com guarda por `ref` + `observer.disconnect()`) | — | `{ event: "pricing_view" }` |
 | `faq_interaction` | Abrir/fechar uma pergunta do FAQ | `question_id` (slug estável, nunca o texto da pergunta), `action: "open"\|"close"` | `{ event: "faq_interaction", question_id: "cancelamento", action: "open" }` |
-| `feature_view` | **Reservado, sem gatilho real hoje** — `features-bento-section.tsx` é uma grade estática, sem abas/carrossel/modal. Helper `trackFeatureView` já existe em `gtm.ts`. | `feature_id` | `{ event: "feature_view", feature_id: "portal_cliente" }` |
+| `feature_view` | Ativo na landing page de Google Ads: sentinela `IntersectionObserver` (`SectionViewTracker`, mesmo padrão do `pricing_view`) em 4 seções de prova — visual do produto, Cronia, gestão (agenda/alunos/ciclos/financeiro) e desktop+mobile. Na home continua **reservado, sem gatilho** (`features-bento-section.tsx` é uma grade estática). | `feature_id` | `{ event: "feature_view", feature_id: "lp_ads_visual" }` — valores usados: `lp_ads_visual`, `lp_ads_assistant`, `lp_ads_management`, `lp_ads_devices` |
 | `whatsapp_click` | **Reservado, sem gatilho real hoje** — o site não tem nenhum link clicável para WhatsApp (o número aparece como texto no FAQ/Termos, não como link `wa.me`). Helper `trackWhatsappClick` já existe em `gtm.ts`. | `cta_location` | `{ event: "whatsapp_click", cta_location: "final_cta" }` |
 
 ### Variáveis de camada de dados (Data Layer Variables) a criar no GTM

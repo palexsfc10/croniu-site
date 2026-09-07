@@ -6,6 +6,8 @@ import { getStoredConsent, pushConsentUpdate, storeConsent, type ConsentChoice }
 import { isGtmEnabled } from "@/lib/analytics/gtm";
 
 export const OPEN_CONSENT_PREFERENCES_EVENT = "croniu:open-consent-preferences";
+/** Dispatched on `window` with `detail: boolean` whenever the banner's own visibility changes — lets a page-specific fixed element (e.g. a sticky CTA bar) avoid stacking on top of it. */
+export const CONSENT_BANNER_VISIBILITY_EVENT = "croniu:consent-banner-visibility";
 
 const DEFAULT_DRAFT: ConsentChoice = { analytics: false, marketing: false };
 
@@ -45,6 +47,10 @@ export function ConsentBanner() {
     window.addEventListener(OPEN_CONSENT_PREFERENCES_EVENT, handleReopen);
     return () => window.removeEventListener(OPEN_CONSENT_PREFERENCES_EVENT, handleReopen);
   }, []);
+
+  useEffect(() => {
+    window.dispatchEvent(new CustomEvent(CONSENT_BANNER_VISIBILITY_EVENT, { detail: visible }));
+  }, [visible]);
 
   function apply(choice: ConsentChoice) {
     storeConsent(choice);
