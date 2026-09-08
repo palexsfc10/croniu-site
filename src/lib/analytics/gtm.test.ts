@@ -84,6 +84,18 @@ describe("gtm", () => {
     ]);
   });
 
+  it("accepts the lp_ads_* cta_location values used by the Google Ads landing page", async () => {
+    vi.stubEnv("NODE_ENV", "production");
+    vi.stubEnv("NEXT_PUBLIC_GTM_ID", "GTM-NVQ74CPL");
+    const { trackCtaClick, trackSignUpStart } = await import("./gtm");
+    trackCtaClick({ cta_name: "comecar_gratis_7_dias", cta_location: "lp_ads_hero", destination: "register" });
+    trackSignUpStart({ source: "lp_ads_hero", cta_location: "lp_ads_hero" });
+    expect(window.dataLayer).toEqual([
+      { event: "cta_click", cta_name: "comecar_gratis_7_dias", cta_location: "lp_ads_hero", destination: "register" },
+      { event: "sign_up_start", source: "lp_ads_hero", cta_location: "lp_ads_hero" },
+    ]);
+  });
+
   it("never includes free-form text fields like question text in any event payload", async () => {
     vi.stubEnv("NODE_ENV", "production");
     vi.stubEnv("NEXT_PUBLIC_GTM_ID", "GTM-NVQ74CPL");

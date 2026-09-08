@@ -34,7 +34,16 @@ function push(payload: Record<string, unknown>): void {
   window.dataLayer.push(payload);
 }
 
-export type CtaLocation = "header" | "hero" | "features" | "pricing" | "final_cta";
+export type CtaLocation =
+  | "header"
+  | "hero"
+  | "features"
+  | "pricing"
+  | "final_cta"
+  | "lp_ads_header"
+  | "lp_ads_hero"
+  | "lp_ads_final_cta"
+  | "lp_ads_sticky";
 
 export type CtaClickParams = {
   cta_name: string;
