@@ -5,7 +5,7 @@ import path from "node:path";
 const BASE_URL = process.env.VISUAL_CHECK_URL ?? "http://localhost:3001";
 const OUTPUT_DIR = path.resolve(process.cwd(), "scripts/screenshots");
 const VIEWPORTS = [360, 390, 768, 1024, 1440];
-const PAGES = ["/", "/privacidade", "/termos"];
+const PAGES = ["/", "/privacidade", "/termos", "/personal-trainer"];
 
 async function checkPage(browser, pagePath, width) {
   const context = await browser.newContext({ viewport: { width, height: 900 } });
