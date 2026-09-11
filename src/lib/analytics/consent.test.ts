@@ -21,6 +21,15 @@ describe("consent storage", () => {
     const { getStoredConsent } = await import("./consent");
     expect(getStoredConsent()).toBeNull();
   });
+
+  it("dispatches CONSENT_UPDATED_EVENT with the new choice whenever it is stored", async () => {
+    const { storeConsent, CONSENT_UPDATED_EVENT } = await import("./consent");
+    const handler = vi.fn();
+    window.addEventListener(CONSENT_UPDATED_EVENT, handler);
+    storeConsent({ analytics: true, marketing: true });
+    expect(handler).toHaveBeenCalledTimes(1);
+    window.removeEventListener(CONSENT_UPDATED_EVENT, handler);
+  });
 });
 
 describe("consent dataLayer pushes", () => {
