@@ -1,6 +1,7 @@
 import { Badge } from "@/components/ui/badge";
 import { Container } from "@/components/ui/container";
 import { IconShield } from "@/components/ui/icons";
+import { AiChatDemo } from "@/components/landing/ai-chat-demo";
 import { ProductScreenshot } from "./product-screenshot";
 import { SectionViewTracker } from "./section-view-tracker";
 
@@ -24,6 +25,16 @@ export function LpAssistantSection() {
             <IconShield width={16} height={16} />
             Nada é alterado sem a sua confirmação.
           </p>
+          <AiChatDemo
+            variant="dark"
+            exchanges={[
+              {
+                question: "Quais alunos têm ciclo terminando essa semana?",
+                answer:
+                  "3 ciclos terminam até domingo: Marina Alves (3 dias), João Pedro (5 dias) e Clara Nunes (6 dias). Quer que eu prepare a renovação de algum deles?",
+              },
+            ]}
+          />
         </div>
 
         <div className="order-1 lg:order-2">
