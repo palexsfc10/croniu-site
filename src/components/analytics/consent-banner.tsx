@@ -4,6 +4,7 @@ import { useEffect, useId, useState, useSyncExternalStore } from "react";
 import { Button } from "@/components/ui/button";
 import { getStoredConsent, pushConsentUpdate, storeConsent, type ConsentChoice } from "@/lib/analytics/consent";
 import { isGtmEnabled } from "@/lib/analytics/gtm";
+import { isMetaPixelEnabled } from "@/lib/analytics/meta-pixel";
 
 export const OPEN_CONSENT_PREFERENCES_EVENT = "croniu:open-consent-preferences";
 /** Dispatched on `window` with `detail: boolean` whenever the banner's own visibility changes — lets a page-specific fixed element (e.g. a sticky CTA bar) avoid stacking on top of it. */
@@ -17,7 +18,7 @@ function subscribeNothing(): () => void {
 
 /** No stored choice yet → show on first paint. SSR never knows, so default to hidden there. */
 function hasNoStoredChoice(): boolean {
-  return isGtmEnabled() && getStoredConsent() === null;
+  return (isGtmEnabled() || isMetaPixelEnabled()) && getStoredConsent() === null;
 }
 function hasNoStoredChoiceServerSnapshot(): boolean {
   return false;
@@ -73,7 +74,7 @@ export function ConsentBanner() {
           <p className="text-sm font-semibold text-ink">Cookies e privacidade</p>
           <p className="text-sm text-ink/70">
             Usamos cookies essenciais para o site funcionar e, com sua permissão, cookies de
-            análise para entender como os visitantes chegam até o Croniu.{" "}
+            análise e de campanhas para entender como os visitantes chegam até o Croniu.{" "}
             <a href="/privacidade" className="font-medium text-brand-700 underline underline-offset-2">
               Política de Privacidade
             </a>
@@ -112,8 +113,8 @@ export function ConsentBanner() {
                 className="mt-0.5 accent-brand-700"
               />
               <span>
-                <span className="font-medium text-ink">Marketing</span> — reservado para campanhas
-                futuras. Nenhuma tag de marketing está ativa hoje.
+                <span className="font-medium text-ink">Marketing</span> — mede o resultado de
+                campanhas de anúncio (Meta Pixel).
               </span>
             </label>
           </div>

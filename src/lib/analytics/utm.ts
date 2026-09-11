@@ -6,6 +6,7 @@ export const TRACKED_PARAMS = [
   "utm_content",
   "utm_term",
   "gclid",
+  "fbclid",
 ] as const;
 
 export type TrackedParams = Partial<Record<(typeof TRACKED_PARAMS)[number], string>>;

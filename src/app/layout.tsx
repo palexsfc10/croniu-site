@@ -8,6 +8,7 @@ import {
 } from "@/components/analytics/gtm-scripts";
 import { ConsentBanner } from "@/components/analytics/consent-banner";
 import { RoutePageviewTracker } from "@/components/analytics/route-pageview-tracker";
+import { MetaPixelScripts } from "@/components/analytics/meta-pixel-scripts";
 import { siteConfig } from "@/lib/site";
 import "./globals.css";
 
@@ -106,6 +107,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <ServiceWorkerCleanup />
         <RoutePageviewTracker />
         {children}
+        <MetaPixelScripts />
         <ConsentBanner />
         <script
           type="application/ld+json"

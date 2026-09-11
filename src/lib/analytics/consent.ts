@@ -4,6 +4,9 @@ export type ConsentChoice = { analytics: boolean; marketing: boolean };
 
 const STORAGE_KEY = "croniu_consent_v1";
 
+/** Dispatched on `window` whenever the stored choice changes — lets scripts gated on marketing consent (Meta Pixel) react without a page reload. */
+export const CONSENT_UPDATED_EVENT = "croniu:consent-updated";
+
 /** Necessary/functional storage never depends on this — only analytics + marketing do. */
 export function getStoredConsent(): ConsentChoice | null {
   if (typeof window === "undefined") return null;
@@ -27,6 +30,7 @@ export function storeConsent(choice: ConsentChoice): void {
   } catch {
     /* storage unavailable (private mode, quota) — consent still applied for this session */
   }
+  window.dispatchEvent(new CustomEvent(CONSENT_UPDATED_EVENT, { detail: choice }));
 }
 
 function consentState(choice: ConsentChoice | null) {
