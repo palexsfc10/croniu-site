@@ -18,10 +18,9 @@ const DESTINATION_ITEM = {
 /**
  * Sits right after the hero — this is "Croniu como solução centralizadora"
  * in the page's narrative order, before the real-screenshot proof section.
- * Intentionally not wired to feature_view/SectionViewTracker: the existing
- * event map (docs/ANALYTICS.md) reserves that event's feature_id values for
- * the 4 designated proof sections, and this isn't one of them — same
- * "reserved, no trigger" treatment as the home page's static features grid.
+ * Intentionally not wired to feature_view/SectionViewTracker: it's a
+ * decorative "before/after" grid with no real screenshot, unlike the
+ * designated proof sections (see docs/ANALYTICS.md for the full list).
  */
 export function LpConsolidationSection() {
   return (

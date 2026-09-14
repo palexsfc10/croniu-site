@@ -1,6 +1,6 @@
 import { Container } from "@/components/ui/container";
 import { SectionHeading } from "@/components/ui/section-heading";
-import { ProductScreenshot } from "./product-screenshot";
+import { ProductScreenshot } from "@/components/ui/product-screenshot";
 import { SectionViewTracker } from "./section-view-tracker";
 
 export function LpProductVisualSection() {

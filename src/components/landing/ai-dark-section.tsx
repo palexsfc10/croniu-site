@@ -1,6 +1,7 @@
 import { Badge } from "@/components/ui/badge";
 import { Container } from "@/components/ui/container";
 import { IconShield } from "@/components/ui/icons";
+import { ProductScreenshot } from "@/components/ui/product-screenshot";
 import { siteConfig } from "@/lib/site";
 import { AiChatDemo } from "./ai-chat-demo";
 
@@ -30,20 +31,32 @@ const WRITE_ACTION_EXCHANGE = {
 
 export function AiDarkSection() {
   return (
-    <section id="ia" className="bg-ink py-20 text-white sm:py-28">
+    <section id="ia" className="bg-gradient-to-b from-ink via-ink to-brand-900 py-20 text-white sm:py-28">
       <Container className="flex flex-col gap-14">
-        <div className="mx-auto flex max-w-2xl flex-col items-center gap-4 text-center">
-          <Badge variant="ai">
-            <span aria-hidden="true">✦</span> Diferencial Croniu
-          </Badge>
-          <h2 className="font-display text-3xl font-semibold tracking-tight sm:text-4xl">
-            Uma IA que consulta sua operação — não um chatbot genérico
-          </h2>
-          <p className="text-base text-white/70 sm:text-lg">
-            O assistente do Croniu responde com dados reais da sua conta: ciclos, recebimentos e
-            agenda. E quando a pergunta envolve mudar algo, ele sempre pede a sua confirmação antes de
-            agir.
-          </p>
+        <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
+          <div className="flex flex-col items-center gap-4 text-center lg:items-start lg:text-left">
+            <Badge variant="ai">
+              <span aria-hidden="true">✦</span> Cronia · Assistente do Croniu
+            </Badge>
+            <h2 className="font-display text-3xl font-semibold tracking-tight sm:text-4xl">
+              Entre um atendimento e outro, conte com uma ajuda
+            </h2>
+            <p className="text-base text-white/70 sm:text-lg">
+              A Cronia responde com dados reais da sua conta: ciclos, recebimentos e agenda. E quando
+              a pergunta envolve mudar algo, ela sempre pede a sua confirmação antes de agir.
+            </p>
+          </div>
+
+          <div className="mx-auto w-full max-w-[220px] sm:max-w-[240px] lg:mx-0 lg:ml-auto">
+            <ProductScreenshot
+              src="/images/lp-personal-trainer/cronia-mobile.png"
+              alt="Tela da Cronia, assistente do Croniu, aberta no celular com sugestões de perguntas"
+              width={390}
+              height={901}
+              frame="phone"
+              sizes="240px"
+            />
+          </div>
         </div>
 
         <div className="grid gap-6 lg:grid-cols-3">

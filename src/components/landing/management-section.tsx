@@ -4,9 +4,9 @@ import { useState } from "react";
 import { Container } from "@/components/ui/container";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { IconCalendar, IconRefresh, IconUsers, IconWallet } from "@/components/ui/icons";
-import { cn } from "@/lib/cn";
 import { ProductScreenshot } from "@/components/ui/product-screenshot";
-import { SectionViewTracker } from "./section-view-tracker";
+import { cn } from "@/lib/cn";
+import { SectionViewTracker } from "@/components/lp-google-ads/section-view-tracker";
 
 const TABS = [
   {
@@ -19,13 +19,13 @@ const TABS = [
     alt: "Agenda semanal do Croniu com os compromissos marcados por dia e horário",
   },
   {
-    id: "alunos",
-    label: "Alunos",
+    id: "clientes",
+    label: "Clientes",
     icon: IconUsers,
     src: "/images/lp-personal-trainer/alunos-lista.png",
     width: 1668,
     height: 500,
-    alt: "Lista de alunos do Croniu com colunas de atendimento, agenda, evolução, financeiro, renovação e atenção",
+    alt: "Lista de clientes do Croniu com colunas de atendimento, agenda, evolução, financeiro, renovação e atenção",
   },
   {
     id: "ciclos",
@@ -34,7 +34,7 @@ const TABS = [
     src: "/images/lp-personal-trainer/ciclo-plano.png",
     width: 1599,
     height: 469,
-    alt: "Ciclo atual e plano de acompanhamento de um aluno, com status de renovação",
+    alt: "Ciclo atual e plano de acompanhamento de um cliente, com status de renovação",
   },
   {
     id: "financeiro",
@@ -47,17 +47,17 @@ const TABS = [
   },
 ] as const;
 
-export function LpManagementSection() {
+export function ManagementSection() {
   const [activeId, setActiveId] = useState<(typeof TABS)[number]["id"]>("agenda");
   const active = TABS.find((tab) => tab.id === activeId) ?? TABS[0];
 
   return (
-    <section className="py-16 sm:py-24">
+    <section id="produto" className="py-20 sm:py-28">
       <Container className="flex flex-col gap-10">
         <SectionHeading
           eyebrow="Tudo em um só lugar"
-          title="Agenda, alunos, ciclos, renovações e financeiro"
-          description="As mesmas telas reais que você vai usar todo dia — sem precisar alternar entre planilha, agenda de papel e WhatsApp."
+          title="Clientes, agenda, ciclos e financeiro, sem trocar de tela"
+          description="As mesmas telas reais que você vai usar todo dia — sem precisar alternar entre planilha, agenda de papel e conversas de WhatsApp."
         />
 
         <div className="mx-auto flex flex-wrap justify-center gap-2">
@@ -94,7 +94,7 @@ export function LpManagementSection() {
           className="mx-auto max-w-4xl"
         />
       </Container>
-      <SectionViewTracker featureId="lp_ads_management" />
+      <SectionViewTracker featureId="home_management" />
     </section>
   );
 }
