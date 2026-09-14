@@ -10,7 +10,7 @@ export function LpHeader() {
       <Container className="flex h-16 items-center justify-between">
         <span className="flex items-baseline gap-1.5">
           <BrandWordmark size="md" />
-          <span className="hidden text-sm font-medium text-ink/40 sm:inline">Workspace</span>
+          <span className="text-xs font-medium text-ink/40 sm:text-sm">Workspace</span>
         </span>
         <AppCtaLink
           href={registerUrl}

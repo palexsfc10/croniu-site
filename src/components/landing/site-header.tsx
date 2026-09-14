@@ -24,7 +24,7 @@ export function SiteHeader() {
       <Container className="flex h-16 items-center justify-between">
         <Link href="/" className="flex items-baseline gap-1.5" aria-label="Ir para o início">
           <BrandWordmark size="md" />
-          <span className="hidden text-sm font-medium text-ink/40 sm:inline">Workspace</span>
+          <span className="text-xs font-medium text-ink/40 sm:text-sm">Workspace</span>
         </Link>
 
         <nav aria-label="Navegação principal" className="hidden items-center gap-8 lg:flex">
