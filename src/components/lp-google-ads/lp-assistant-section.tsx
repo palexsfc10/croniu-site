@@ -2,7 +2,7 @@ import { Badge } from "@/components/ui/badge";
 import { Container } from "@/components/ui/container";
 import { IconShield } from "@/components/ui/icons";
 import { AiChatDemo } from "@/components/landing/ai-chat-demo";
-import { ProductScreenshot } from "./product-screenshot";
+import { ProductScreenshot } from "@/components/ui/product-screenshot";
 import { SectionViewTracker } from "./section-view-tracker";
 
 export function LpAssistantSection() {

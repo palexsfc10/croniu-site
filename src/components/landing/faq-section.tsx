@@ -10,6 +10,12 @@ import { formatPriceBRL, siteConfig } from "@/lib/site";
 
 const FAQ_ITEMS = [
   {
+    id: "computador_celular",
+    question: "Funciona no computador e no celular?",
+    answer:
+      "Sim. O Croniu funciona direto no navegador, no computador ou no celular, sem precisar instalar nenhum aplicativo — a mesma conta, sempre sincronizada.",
+  },
+  {
     id: "cartao_credito",
     question: `Preciso de cartão de crédito para testar?`,
     answer: `Não. Você começa os ${siteConfig.trialDays} dias de teste grátis sem informar cartão de crédito.`,
@@ -42,6 +48,12 @@ const FAQ_ITEMS = [
     question: "O Croniu cobra os meus clientes automaticamente?",
     answer:
       "Não. O Croniu ajuda você a acompanhar recebimentos e vencimentos, mas a cobrança dos seus clientes finais continua sendo feita por você, fora da plataforma.",
+  },
+  {
+    id: "portal_cliente",
+    question: "Meus clientes precisam criar conta para acompanhar o progresso?",
+    answer:
+      "Não. Cada cliente pode receber um link próprio para acompanhar o andamento do ciclo, sem precisar criar conta ou senha.",
   },
   {
     id: "ia_altera_dados",

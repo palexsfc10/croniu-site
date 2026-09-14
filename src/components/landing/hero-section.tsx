@@ -1,11 +1,10 @@
 import { Badge } from "@/components/ui/badge";
 import { Container } from "@/components/ui/container";
 import { IconArrowRight } from "@/components/ui/icons";
-import { registerUrl } from "@/lib/site";
+import { ProductScreenshot } from "@/components/ui/product-screenshot";
+import { registerUrl, siteConfig } from "@/lib/site";
 import { AppCtaLink } from "./app-cta-link";
 import { HeroSecondaryCta } from "./hero-secondary-cta";
-import { AiChatDemo } from "./ai-chat-demo";
-import { CycleCardsStack } from "./cycle-cards-stack";
 
 export function HeroSection() {
   return (
@@ -21,13 +20,12 @@ export function HeroSection() {
           </Badge>
 
           <h1 className="font-display text-4xl font-semibold tracking-tight text-ink sm:text-5xl lg:text-[3.25rem] lg:leading-[1.08]">
-            Sua rotina organizada. Seus clientes acompanhados. Uma IA trabalhando com você.
+            Seu dia já é cheio. Organizar tudo não precisa ocupar o resto dele.
           </h1>
 
           <p className="max-w-xl text-lg text-ink/70">
-            Croniu é o companheiro de quem cuida de clientes recorrentes: ciclos, recebimentos,
-            renovações e agenda em um só lugar — com uma IA que consulta sua operação e te avisa antes
-            de qualquer coisa ficar para trás.
+            Clientes, agenda e recebimentos em um só lugar, com uma IA que consulta sua operação e
+            ajuda no dia a dia — no computador e no celular.
           </p>
 
           <div className="flex flex-col gap-3 sm:flex-row">
@@ -38,7 +36,7 @@ export function HeroSection() {
               ctaLocation="hero"
               size="lg"
             >
-              Começar grátis por 7 dias
+              Teste grátis por {siteConfig.trialDays} dias
               <IconArrowRight width={18} height={18} />
             </AppCtaLink>
             <HeroSecondaryCta
@@ -48,24 +46,32 @@ export function HeroSection() {
               variant="secondary"
               size="lg"
             >
-              Ver como funciona
+              Veja como funciona
             </HeroSecondaryCta>
           </div>
 
-          <p className="text-sm text-ink/50">Sem cartão de crédito. Cancele quando quiser.</p>
+          <p className="text-sm text-ink/50">Sem cartão de crédito no cadastro.</p>
         </div>
 
-        <div className="flex flex-col gap-6">
-          <AiChatDemo
-            exchanges={[
-              {
-                question: "Quais ciclos terminam essa semana?",
-                answer:
-                  "3 ciclos terminam até domingo: Marina Alves (3 dias), João Pedro (5 dias) e Clara Nunes (6 dias). Quer que eu prepare a renovação de algum deles?",
-              },
-            ]}
+        <div className="flex flex-col gap-5">
+          <ProductScreenshot
+            src="/images/lp-personal-trainer/home-desktop.png"
+            alt="Tela inicial do Croniu no computador, com os itens do dia, financeiro e próximos compromissos"
+            width={1918}
+            height={870}
+            sizes="(min-width: 1024px) 560px, calc(100vw - 32px)"
+            priority
           />
-          <CycleCardsStack />
+          <div className="mx-auto w-full max-w-[220px] sm:max-w-[240px]">
+            <ProductScreenshot
+              src="/images/lp-personal-trainer/home-mobile.png"
+              alt="Tela inicial do Croniu no celular, com o mesmo resumo do dia em versão compacta"
+              width={382}
+              height={829}
+              frame="phone"
+              sizes="240px"
+            />
+          </div>
         </div>
       </Container>
     </section>

@@ -11,7 +11,7 @@ import { loginUrl, registerUrl } from "@/lib/site";
 const NAV_LINKS = [
   { href: "#produto", label: "Produto" },
   { href: "#ia", label: "IA" },
-  { href: "#como-funciona", label: "Como funciona" },
+  { href: "#como-comecar", label: "Como começar" },
   { href: "#preco", label: "Preço" },
   { href: "#duvidas", label: "Dúvidas" },
 ];
@@ -22,8 +22,9 @@ export function SiteHeader() {
   return (
     <header className="sticky top-0 z-50 border-b border-ink/10 bg-bg/85 backdrop-blur-md">
       <Container className="flex h-16 items-center justify-between">
-        <Link href="/" className="flex items-center" aria-label="Ir para o início">
+        <Link href="/" className="flex items-baseline gap-1.5" aria-label="Ir para o início">
           <BrandWordmark size="md" />
+          <span className="text-xs font-medium text-ink/40 sm:text-sm">Workspace</span>
         </Link>
 
         <nav aria-label="Navegação principal" className="hidden items-center gap-8 lg:flex">

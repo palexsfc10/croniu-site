@@ -39,7 +39,7 @@ export function AiChatDemo({
           <IconSparkles width={16} height={16} />
         </span>
         <p className={cn("text-sm font-semibold", isDark ? "text-white" : "text-ink")}>
-          Assistente Croniu
+          Cronia
         </p>
       </div>
 

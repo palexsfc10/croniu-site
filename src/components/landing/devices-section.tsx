@@ -2,16 +2,16 @@ import { Container } from "@/components/ui/container";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { IconMonitor, IconSmartphone } from "@/components/ui/icons";
 import { ProductScreenshot } from "@/components/ui/product-screenshot";
-import { SectionViewTracker } from "./section-view-tracker";
+import { SectionViewTracker } from "@/components/lp-google-ads/section-view-tracker";
 
-export function LpDevicesSection() {
+export function DevicesSection() {
   return (
-    <section className="py-16 sm:py-24">
+    <section className="bg-brand-50/50 py-20 sm:py-28">
       <Container className="flex flex-col gap-12">
         <SectionHeading
           eyebrow="Onde você já trabalha"
-          title="Organize no computador. Resolva pelo celular."
-          description="A mesma conta, sempre sincronizada — sem versão limitada no celular."
+          title="No computador, espaço para planejar. No celular, praticidade para acompanhar."
+          description="A mesma conta, sempre sincronizada, direto no navegador — sem instalar nada e sem versão limitada no celular."
         />
 
         <div className="grid gap-10 lg:grid-cols-[1.4fr_1fr] lg:items-end">
@@ -45,7 +45,7 @@ export function LpDevicesSection() {
           </div>
         </div>
       </Container>
-      <SectionViewTracker featureId="lp_ads_devices" />
+      <SectionViewTracker featureId="home_devices" />
     </section>
   );
 }

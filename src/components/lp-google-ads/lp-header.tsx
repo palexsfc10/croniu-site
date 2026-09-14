@@ -8,7 +8,10 @@ export function LpHeader() {
   return (
     <header className="sticky top-0 z-50 border-b border-ink/10 bg-bg/85 backdrop-blur-md">
       <Container className="flex h-16 items-center justify-between">
-        <BrandWordmark size="md" />
+        <span className="flex items-baseline gap-1.5">
+          <BrandWordmark size="md" />
+          <span className="text-xs font-medium text-ink/40 sm:text-sm">Workspace</span>
+        </span>
         <AppCtaLink
           href={registerUrl}
           intent="register"

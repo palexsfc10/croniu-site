@@ -3,7 +3,7 @@ import { Container } from "@/components/ui/container";
 import { IconArrowRight, IconCalendar, IconMessageCircle, IconSpreadsheet } from "@/components/ui/icons";
 import { AppCtaLink } from "@/components/landing/app-cta-link";
 import { registerUrl, siteConfig } from "@/lib/site";
-import { ProductScreenshot } from "./product-screenshot";
+import { ProductScreenshot } from "@/components/ui/product-screenshot";
 
 /**
  * First-fold continuity with the Meta Ads campaign: the ad's pain point
