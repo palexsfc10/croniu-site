@@ -164,3 +164,28 @@ export function IconSpreadsheet(props: IconProps) {
     </svg>
   );
 }
+
+export function IconPlay(props: IconProps) {
+  return (
+    <svg {...base(props)}>
+      <path d="M8 5.5v13l11-6.5-11-6.5Z" fill="currentColor" strokeWidth={1.5} />
+    </svg>
+  );
+}
+
+export function IconPause(props: IconProps) {
+  return (
+    <svg {...base(props)}>
+      <path d="M9 5v14M15 5v14" strokeWidth={2.25} />
+    </svg>
+  );
+}
+
+export function IconReplay(props: IconProps) {
+  return (
+    <svg {...base(props)}>
+      <path d="M3 12a9 9 0 1 0 3-6.7" />
+      <path d="M3 4v5h5" />
+    </svg>
+  );
+}
