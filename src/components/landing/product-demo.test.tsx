@@ -64,9 +64,12 @@ describe("ProductDemo", () => {
     // Todas as cenas ficam montadas para o crossfade — e, com isso, nenhuma
     // informação depende da animação ter rodado.
     expect(screen.getAllByRole("img", { hidden: true })).toHaveLength(6);
-    expect(
-      screen.getByRole("img", { name: /agenda semanal do croniu/i, hidden: true }),
-    ).toBeInTheDocument();
+    // Âncora no assunto da cena, não na frase inteira: o alt é reescrito
+    // sempre que a captura é refeita, e o que importa aqui é que exista uma
+    // descrição real para cada tela.
+    for (const alt of [/tela inicial do croniu/i, /agenda do dia/i, /lista de clientes/i]) {
+      expect(screen.getByRole("img", { name: alt, hidden: true })).toBeInTheDocument();
+    }
   });
 
   it("exposes a play control that toggles to pause", async () => {
