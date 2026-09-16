@@ -4,9 +4,14 @@
  * responde com dados fictícios. Nenhum dado real de cliente aparece aqui.
  */
 import { createServer } from "node:http";
-import { appendFileSync } from "node:fs";
+import { appendFileSync, mkdirSync } from "node:fs";
+import path from "node:path";
 
-const LOG = "/home/user/demo-harness/requests.log";
+// Relativo ao próprio script: caminho absoluto aqui quebra o harness em
+// qualquer máquina que não seja a de quem escreveu.
+const OUT_DIR = path.join(import.meta.dirname, "output");
+const LOG = path.join(OUT_DIR, "requests.log");
+mkdirSync(OUT_DIR, { recursive: true });
 const routes = new Map();
 export function route(method, pattern, handler) {
   routes.set(`${method} ${pattern}`, handler);

@@ -46,7 +46,7 @@ ffmpeg -i output/<arquivo>.webm -c:v libx264 -crf 23 -pix_fmt yuv420p demo.mp4
 
 ## Quando uma tela quebrar
 
-O `fake-api.mjs` registra toda rota pedida em `requests.log` e devolve 404 para
+O `fake-api.mjs` registra toda rota pedida em `output/requests.log` e devolve 404 para
 o que não conhece. Esse log é o caminho para descobrir o que falta: rode, veja
 qual rota apareceu, e escreva o fixture correspondente.
 
