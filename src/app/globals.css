@@ -74,3 +74,69 @@ body {
     transform: translateY(-10px);
   }
 }
+
+/* --- Product demo player ---------------------------------------------------
+   O tempo de cada cena é a própria animação da barra de progresso: quando ela
+   termina, o componente avança (onAnimationEnd). Assim pausar é só
+   animation-play-state, sem timer paralelo para dessincronizar, e o React
+   re-renderiza uma vez por cena em vez de 60 vezes por segundo. */
+
+@keyframes croniu-demo-progress {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+/* Deriva lenta que dá sensação de vídeo sem mexer no conteúdo do screenshot. */
+@keyframes croniu-demo-drift {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.035);
+  }
+}
+
+@keyframes croniu-demo-scene-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.croniu-demo-progress {
+  transform-origin: left center;
+  animation: croniu-demo-progress linear forwards;
+}
+
+.croniu-demo-drift {
+  animation: croniu-demo-drift linear both;
+}
+
+.croniu-demo-scene-in {
+  animation: croniu-demo-scene-in 420ms ease-out both;
+}
+
+.croniu-demo-paused .croniu-demo-progress,
+.croniu-demo-paused .croniu-demo-drift {
+  animation-play-state: paused;
+}
+
+/* Sem movimento: nada de deriva nem avanço automático — o player vira um
+   seletor de capítulos, e a barra fica cheia para não parecer travada. */
+@media (prefers-reduced-motion: reduce) {
+  .croniu-demo-progress,
+  .croniu-demo-drift,
+  .croniu-demo-scene-in {
+    animation: none !important;
+  }
+
+  .croniu-demo-progress {
+    transform: scaleX(1);
+  }
+}

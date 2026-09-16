@@ -1,6 +1,7 @@
 import { SiteHeader } from "@/components/landing/site-header";
 import { SiteFooter } from "@/components/landing/site-footer";
 import { HeroSection } from "@/components/landing/hero-section";
+import { ProductDemoSection } from "@/components/landing/product-demo-section";
 import { PainBeforeAfterSection } from "@/components/landing/pain-before-after-section";
 import { DailyFocusSection } from "@/components/landing/daily-focus-section";
 import { ClientTrackingSection } from "@/components/landing/client-tracking-section";
@@ -20,6 +21,7 @@ export default function HomePage() {
       <SiteHeader />
       <main>
         <HeroSection />
+        <ProductDemoSection />
         <PainBeforeAfterSection />
         <DailyFocusSection />
         <ClientTrackingSection />
