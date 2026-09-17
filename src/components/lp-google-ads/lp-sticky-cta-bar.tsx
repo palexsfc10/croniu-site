@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { AppCtaLink } from "@/components/landing/app-cta-link";
 import { CONSENT_BANNER_VISIBILITY_EVENT } from "@/components/analytics/consent-banner";
-import { registerUrl, siteConfig } from "@/lib/site";
+import { registerUrl } from "@/lib/site";
 
 const SHOW_AFTER_SCROLL_Y = 480;
 
@@ -52,7 +52,7 @@ export function LpStickyCtaBar() {
         className="w-full justify-center"
         tabIndex={visible ? 0 : -1}
       >
-        Testar grátis por {siteConfig.trialDays} dias
+        Testar grátis
       </AppCtaLink>
     </div>
   );

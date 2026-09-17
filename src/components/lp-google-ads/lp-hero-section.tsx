@@ -2,14 +2,15 @@ import { Badge } from "@/components/ui/badge";
 import { Container } from "@/components/ui/container";
 import { IconArrowRight } from "@/components/ui/icons";
 import { AppCtaLink } from "@/components/landing/app-cta-link";
-import { WorkspaceHomeDemo } from "@/components/landing/demos/workspace-home-demo";
+import { WorkspaceHomeEditorial } from "@/components/landing/demos/workspace-home-editorial";
 import { registerUrl, siteConfig } from "@/lib/site";
 
 /**
  * Continuidade com a campanha Meta/Google Ads: paleta escura, dor da rotina
- * espalhada, prova em tela real, CTA único de teste grátis. A tela é a Home
- * real do croniu-app (WorkspaceHomeDemo), a mesma usada na home institucional
- * — sem simulação de dashboard.
+ * espalhada, prova em tela real, CTA único de teste grátis. A composição é
+ * baseada na Home real do croniu-app (WorkspaceHomeEditorial, mesma usada na
+ * home institucional) — a prova em screenshot completo vem nas seções
+ * abaixo (ClientRecordDemo, AgendaCycleDemo, ResponsiveWorkspaceDemo).
  */
 export function LpHeroSection() {
   return (
@@ -41,15 +42,17 @@ export function LpHeroSection() {
               ctaLocation="lp_ads_hero"
               size="lg"
             >
-              Testar grátis por {siteConfig.trialDays} dias
+              Testar grátis
               <IconArrowRight width={18} height={18} />
             </AppCtaLink>
           </div>
 
-          <p className="text-sm text-white/45">Sem cartão de crédito.</p>
+          <p className="text-sm text-white/45">
+            {siteConfig.trialDays} dias grátis. Sem cartão de crédito.
+          </p>
         </div>
 
-        <WorkspaceHomeDemo priority sizes="(min-width: 1024px) 680px, calc(100vw - 32px)" />
+        <WorkspaceHomeEditorial className="croniu-rise-in" />
       </Container>
     </section>
   );

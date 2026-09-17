@@ -54,7 +54,7 @@ export function PricingSection() {
               size="lg"
               className="w-full"
             >
-              Começar grátis por {siteConfig.trialDays} dias
+              Começar grátis
             </AppCtaLink>
             <p className="text-center text-xs text-ink/50">
               Sem cartão de crédito para começar. Pagamento processado com segurança pela Asaas — seus

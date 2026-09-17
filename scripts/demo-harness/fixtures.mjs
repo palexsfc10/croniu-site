@@ -18,8 +18,8 @@ const appointment = (id, clientIdx, hour, minute, status = "scheduled") => ({
   id, client_id: CLIENTS[clientIdx].id, cycle_id: `cy${clientIdx + 1}`, service_id: "s1",
   location_id: "l1", title: null, starts_at: at(hour, minute), ends_at: at(hour + 1, minute),
   status, notes: null, created_at: at(8), updated_at: at(8),
-  client_name: CLIENTS[clientIdx].full_name, service_name: "Treino individual",
-  location_name: "Studio", cycle_service_name: "Treino individual",
+  client_name: CLIENTS[clientIdx].full_name, service_name: "Acompanhamento individual",
+  location_name: "Studio", cycle_service_name: "Acompanhamento individual",
 });
 
 const cycle = (id, clientIdx, endsOn, done, total) => ({
@@ -29,14 +29,14 @@ const cycle = (id, clientIdx, endsOn, done, total) => ({
   lessons_remaining: total - done, pricing_mode: "fixed_period", value_cents: 48000,
   duration_label: "Mensal", notes: null, last_contacted_at: null, contact_confirmed_at: null,
   created_at: at(8), updated_at: at(8),
-  client_name: CLIENTS[clientIdx].full_name, service_name: "Treino individual",
+  client_name: CLIENTS[clientIdx].full_name, service_name: "Acompanhamento individual",
 });
 
 const receivable = (id, clientIdx, cents, dueOn, status = "pending") => ({
   id, cycle_id: `cy${clientIdx + 1}`, client_id: CLIENTS[clientIdx].id, amount_cents: cents,
   due_on: dueOn, status, paid_at: null, payment_method: null, notes: null,
   created_at: at(8), updated_at: at(8),
-  client_name: CLIENTS[clientIdx].full_name, cycle_service_name: "Treino individual",
+  client_name: CLIENTS[clientIdx].full_name, cycle_service_name: "Acompanhamento individual",
 });
 
 export function register(route) {
@@ -101,7 +101,7 @@ export function register(route) {
       },
       {
         kind: "payment_overdue", title: "Recebimento de Helena Duarte venceu ontem",
-        subtitle: "R$ 480,00 · Treino individual",
+        subtitle: "R$ 480,00 · Acompanhamento individual",
         href: "/app/receivables/r1", entity_id: "r1", client_name: "Helena Duarte",
         tone: "danger", priority_rank: 0,
       },
@@ -112,7 +112,14 @@ export function register(route) {
       href: "/app/cycles/cy1", entity_id: "cy1", cta_label: "Ver ciclo",
     },
     contextual_hint: "Quatro atendimentos hoje e um ciclo perto do fim.",
-    message: "Bom dia, Marina",
+    // Sem palavra de saudação aqui: o cabeçalho acima já monta a saudação
+    // (Bom dia/Boa tarde/Boa noite) a partir da hora real do navegador em
+    // today-board.tsx (greetingForHour) — duplicar isso neste campo é o que
+    // gerava "Boa noite, Marina" no título e "Bom dia, Marina" logo abaixo
+    // quando a captura rodava à noite. capture.mjs também congela o relógio
+    // do navegador para a hora escolhida abaixo, então essa saudação nunca
+    // diverge do texto renderizado, não importa quando o script rodar.
+    message: "Quatro atendimentos hoje e um ciclo perto de renovar.",
     routines_due_today_count: 2,
     has_active_service: true,
     has_active_cycle_template: true,

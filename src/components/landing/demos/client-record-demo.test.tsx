@@ -12,9 +12,9 @@ describe("ClientRecordDemo", () => {
     ).toBeInTheDocument();
   });
 
-  it("never mentions workout plans/protocols — Croniu doesn't build or prescribe workouts", () => {
+  it("never mentions workouts, plans or protocols — Croniu doesn't build or prescribe workouts", () => {
     render(<ClientRecordDemo />);
     const text = document.body.textContent ?? "";
-    expect(text).not.toMatch(/plano de treino|protocolo|prescri[cç][aã]o/i);
+    expect(text).not.toMatch(/treino|protocolo|prescri[cç][aã]o/i);
   });
 });

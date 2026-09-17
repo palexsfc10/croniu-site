@@ -3,12 +3,12 @@ import { ProductScreenshot } from "@/components/ui/product-screenshot";
 
 /**
  * Ficha do cliente — "aba Acompanhamento" de /app/clients/[clientId} no
- * croniu-app. A tela real também tem um cartão de "Plano" (protocolo de
- * treino), que o Croniu não monta nem prescreve e que esta LP não pode
- * mostrar — por isso o painel de ficha abaixo é recriado com os mesmos
- * textos, rótulos e hierarquia dos cartões "Ciclo atual" e "Avaliações"
- * (client-profile.tsx / client-evaluations-section.tsx), sem esse terceiro
- * cartão. A lista à esquerda é a captura real de /app/clients.
+ * croniu-app. A tela real também tem um terceiro cartão ("Plano") ligado a
+ * um recurso que o Croniu não oferece e que esta LP não pode sugerir — por
+ * isso o painel de ficha abaixo é recriado com os mesmos textos, rótulos e
+ * hierarquia dos cartões "Ciclo atual" e "Avaliações" (client-profile.tsx /
+ * client-evaluations-section.tsx), sem esse terceiro cartão. A lista à
+ * esquerda é a captura real de /app/clients.
  */
 export function ClientRecordDemo() {
   return (
@@ -36,7 +36,7 @@ export function ClientRecordDemo() {
           </span>
           <div className="flex flex-col gap-1">
             <p className="text-sm font-semibold text-ink">Ciclo atual</p>
-            <p className="text-sm text-ink/70">Treino individual · 18 ago – 18 set</p>
+            <p className="text-sm text-ink/70">Acompanhamento individual · 18 ago – 18 set</p>
             <p className="text-sm text-ink/50">10 de 12 aulas realizadas · renovação em 3 dias</p>
           </div>
         </div>

@@ -87,8 +87,8 @@ export default function TermosPage() {
 
             <Section title="6. Natureza do serviço — não substitui julgamento profissional">
               <p>
-                O {siteConfig.name} é uma ferramenta de organização e gestão. Ele não prescreve treinos,
-                exercícios, dietas ou avaliações físicas, e as sugestões do assistente de IA não
+                O {siteConfig.name} é uma ferramenta de organização e gestão. Ele não prescreve exercícios
+                físicos, dietas ou avaliações físicas, e as sugestões do assistente de IA não
                 substituem o julgamento técnico do profissional responsável pelo atendimento. Cabe a você,
                 profissional, cumprir as normas do seu conselho de classe (quando aplicável) na condução
                 do seu trabalho.

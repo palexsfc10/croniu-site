@@ -11,7 +11,7 @@ export function LpProductShowcaseSection() {
         <SectionHeading
           eyebrow="O produto, sem enrolação"
           title="O Croniu, do jeito que ele é"
-          description="Nada de simulação: essas são as telas reais que você vai usar todo dia com seus alunos."
+          description="A interface real do Croniu, com dados fictícios criados só para esta demonstração."
         />
         <ClientRecordDemo />
         <AgendaCycleDemo />

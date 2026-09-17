@@ -2,16 +2,15 @@ import { Button } from "@/components/ui/button";
 import { IconShield } from "@/components/ui/icons";
 import { ProductScreenshot } from "@/components/ui/product-screenshot";
 import { AiChatDemo } from "@/components/landing/ai-chat-demo";
-import { siteConfig } from "@/lib/site";
 
 /**
  * Fluxo real da Cronia: uma pergunta sobre o dia, a resposta com dados da
  * operação e — quando envolve mudar algo — a confirmação antes de agir. O
- * texto "Aguardando confirmação" / "Confirmar" segue o mesmo padrão de
- * apps/web/src/app/app/assistant (proposal-card.tsx). A ação de escrita
- * fica atrás do mesmo feature flag que já existe no site
- * (siteConfig.aiActionDemosEnabled) até o recurso estar disponível no
- * produto — não prometemos autonomia que ainda não existe.
+ * texto "Aguardando confirmação" / "Confirmar" segue o mesmo padrão real de
+ * apps/web/src/components/app/assistant/proposal-card.tsx, já em produção
+ * (backend/app/agent/tools.py tem os pares propose/execute para renovar
+ * ciclo, remarcar, registrar pagamento etc.) — por isso a confirmação
+ * aparece direto, sem aviso de "em desenvolvimento".
  */
 export function CroniaDemo() {
   return (
@@ -39,27 +38,24 @@ export function CroniaDemo() {
           ]}
         />
 
-        {siteConfig.aiActionDemosEnabled ? (
-          <div className="flex flex-col gap-3 rounded-2xl border border-white/10 bg-white/[0.04] p-5 backdrop-blur">
-            <p className="text-sm text-white/80">
-              Renovar o ciclo de Ana Ferreira por mais 8 aulas, mesmo valor do ciclo atual?
-            </p>
-            <div className="flex flex-wrap items-center gap-3">
-              <span className="inline-flex items-center rounded-full bg-ai-500/20 px-3 py-1 text-xs font-semibold text-ai-200">
-                Aguardando confirmação
-              </span>
-              <Button variant="ai" size="md" type="button">
-                Confirmar
-              </Button>
-            </div>
-          </div>
-        ) : (
-          <p className="flex items-center gap-2 text-sm text-white/60">
-            <IconShield width={16} height={16} />
-            Ações de escrita, como renovar um ciclo direto pela IA, estão em desenvolvimento e, quando
-            chegarem, sempre vão pedir sua confirmação antes de executar.
+        <div className="flex flex-col gap-3 rounded-2xl border border-white/10 bg-white/[0.04] p-5 backdrop-blur">
+          <p className="text-sm text-white/80">
+            Renovar o ciclo de Ana Ferreira por mais 8 aulas, mesmo valor do ciclo atual?
           </p>
-        )}
+          <div className="flex flex-wrap items-center gap-3">
+            <span className="inline-flex items-center rounded-full bg-ai-500/20 px-3 py-1 text-xs font-semibold text-ai-200">
+              Aguardando confirmação
+            </span>
+            <Button variant="ai" size="md" type="button">
+              Confirmar
+            </Button>
+          </div>
+        </div>
+
+        <p className="flex items-center gap-2 text-sm text-white/60">
+          <IconShield width={16} height={16} />
+          Nada é alterado sem a sua confirmação explícita.
+        </p>
       </div>
     </div>
   );

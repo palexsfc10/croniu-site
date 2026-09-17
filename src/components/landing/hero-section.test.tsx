@@ -33,9 +33,11 @@ describe("HeroSection", () => {
     expect(screen.getByText("7 dias grátis. Sem cartão de crédito.")).toBeInTheDocument();
   });
 
-  it("shows the real Croniu Workspace home screen, not a recreated dashboard", () => {
+  it("shows the editorial composition of the Croniu Workspace home screen", () => {
     render(<HeroSection />);
-    const demo = screen.getByAltText(/tela inicial do croniu workspace/i);
-    expect(demo).toHaveAttribute("src", expect.stringContaining("inicio.png"));
+    expect(
+      screen.getByRole("img", { name: /composição da tela inicial do croniu workspace/i }),
+    ).toBeInTheDocument();
+    expect(screen.getByText("Renovar o ciclo da Ana Ferreira")).toBeInTheDocument();
   });
 });

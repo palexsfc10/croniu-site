@@ -31,14 +31,16 @@ describe("LpHeroSection", () => {
 
   it("renders the CTA text and microcopy exactly, pointing at app.croniu.com.br/register", () => {
     render(<LpHeroSection />);
-    const link = screen.getByRole("link", { name: /Testar grátis por 7 dias/ });
+    const link = screen.getByRole("link", { name: /Testar grátis/ });
     expect(link).toHaveAttribute("href", "https://app.croniu.com.br/register");
-    expect(screen.getByText("Sem cartão de crédito.")).toBeInTheDocument();
+    expect(screen.getByText("7 dias grátis. Sem cartão de crédito.")).toBeInTheDocument();
   });
 
-  it("shows the real Croniu Workspace home screen, not a recreated dashboard", () => {
+  it("shows the editorial composition of the Croniu Workspace home screen", () => {
     render(<LpHeroSection />);
-    const desktop = screen.getByAltText(/tela inicial do croniu workspace/i);
-    expect(desktop).toHaveAttribute("src", expect.stringContaining("inicio.png"));
+    expect(
+      screen.getByRole("img", { name: /composição da tela inicial do croniu workspace/i }),
+    ).toBeInTheDocument();
+    expect(screen.getByText("Renovar o ciclo da Ana Ferreira")).toBeInTheDocument();
   });
 });

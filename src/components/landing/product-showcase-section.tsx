@@ -11,7 +11,7 @@ export function ProductShowcaseSection() {
         <SectionHeading
           eyebrow="O produto, sem enrolação"
           title="Telas reais, do jeito que você vai usar todo dia"
-          description="Sem simulação: essas são as mesmas telas do Croniu, com dados fictícios só para mostrar."
+          description="A interface real do Croniu, com dados fictícios criados só para esta demonstração."
         />
 
         <ClientRecordDemo />

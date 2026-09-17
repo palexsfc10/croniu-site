@@ -148,28 +148,12 @@ body {
   }
 }
 
-/* --- Rotina fragmentada → Workspace ----------------------------------------
-   Cada cartão nasce na posição espalhada (definida inline via --scatter-x/y/r)
-   e converge para o centro quando a seção entra na viewport (classe
-   .croniu-scatter-converged no container pai). Sem JS de física: é uma
-   transição de transform comum, então funciona com teclado/leitor de tela e
-   não quebra se a animação for interrompida no meio. */
-.croniu-scatter-card {
-  transform: translate(var(--scatter-x, 0), var(--scatter-y, 0)) rotate(var(--scatter-r, 0deg));
-  transition: transform 700ms cubic-bezier(0.16, 1, 0.3, 1), opacity 500ms ease-out;
-  transition-delay: var(--scatter-delay, 0ms);
-}
-
-.croniu-scatter-converged .croniu-scatter-card {
-  transform: translate(0, 0) rotate(0deg);
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .croniu-scatter-card {
-    transition: none;
-    transform: translate(0, 0) rotate(0deg);
-  }
-}
+/* Rotina fragmentada → Workspace: a posição espalhada, a convergência (cartão
+   se aproxima do centro E desaparece, nunca fica opaco empilhado) e o
+   respeito a prefers-reduced-motion são calculados por cartão em
+   scattered-routine-demo.tsx (via `style`), não aqui — isso deixa o estado
+   convergido verificável direto em teste (element.style), sem depender do
+   motor de CSS real. */
 
 /* Entrada suave para composições "estrela" acima da dobra (hero, Cronia). */
 @keyframes croniu-rise-in {

@@ -23,7 +23,7 @@ export function FinalCtaSection() {
             variant="secondary"
             size="lg"
           >
-            Organizar minha rotina
+            Começar grátis
             <IconArrowRight width={18} height={18} />
           </AppCtaLink>
         </div>

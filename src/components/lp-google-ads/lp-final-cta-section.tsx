@@ -23,7 +23,7 @@ export function LpFinalCtaSection() {
             variant="secondary"
             size="lg"
           >
-            Testar grátis por {siteConfig.trialDays} dias
+            Testar grátis
             <IconArrowRight width={18} height={18} />
           </AppCtaLink>
         </div>

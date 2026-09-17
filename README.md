@@ -23,7 +23,6 @@ Abra http://localhost:3001 (porta padrão local; `npm start` em produção/Verce
 | `NEXT_PUBLIC_PRICE_CENTS` | Preço exibido em centavos. Padrão `2990` (R$ 29,90) |
 | `NEXT_PUBLIC_TRIAL_DAYS` | Dias de teste grátis. Padrão `7` |
 | `NEXT_PUBLIC_SUPPORT_EMAIL` | E-mail de suporte no rodapé (omitido se vazio) |
-| `NEXT_PUBLIC_AI_ACTION_DEMOS` | `true` habilita exemplos estendidos de ações de escrita da IA (com confirmação). Padrão `false` |
 | `NEXT_PUBLIC_ANALYTICS_ENABLED` | Liga o stub de analytics (sem fornecedor configurado ainda). Padrão `false` |
 
 ## Gates

@@ -3,7 +3,7 @@ import { Container } from "@/components/ui/container";
 import { IconArrowRight } from "@/components/ui/icons";
 import { registerUrl, siteConfig } from "@/lib/site";
 import { AppCtaLink } from "./app-cta-link";
-import { WorkspaceHomeDemo } from "./demos/workspace-home-demo";
+import { WorkspaceHomeEditorial } from "./demos/workspace-home-editorial";
 
 export function HeroSection() {
   return (
@@ -46,7 +46,7 @@ export function HeroSection() {
           </p>
         </div>
 
-        <WorkspaceHomeDemo priority sizes="(min-width: 1024px) 680px, calc(100vw - 32px)" />
+        <WorkspaceHomeEditorial className="croniu-rise-in" />
       </Container>
     </section>
   );
