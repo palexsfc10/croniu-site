@@ -11,7 +11,6 @@ import { loginUrl, registerUrl } from "@/lib/site";
 const NAV_LINKS = [
   { href: "#produto", label: "Produto" },
   { href: "#ia", label: "IA" },
-  { href: "#como-comecar", label: "Como começar" },
   { href: "#preco", label: "Preço" },
   { href: "#duvidas", label: "Dúvidas" },
 ];
@@ -20,11 +19,11 @@ export function SiteHeader() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-ink/10 bg-bg/85 backdrop-blur-md">
+    <header className="sticky top-0 z-50 border-b border-white/10 bg-navy-950/90 backdrop-blur-md">
       <Container className="flex h-16 items-center justify-between">
         <Link href="/" className="flex items-baseline gap-1.5" aria-label="Ir para o início">
-          <BrandWordmark size="md" />
-          <span className="text-xs font-medium text-ink/40 sm:text-sm">Workspace</span>
+          <BrandWordmark size="md" tone="dark" />
+          <span className="text-xs font-medium text-white/40 sm:text-sm">Workspace</span>
         </Link>
 
         <nav aria-label="Navegação principal" className="hidden items-center gap-8 lg:flex">
@@ -32,7 +31,7 @@ export function SiteHeader() {
             <a
               key={link.href}
               href={link.href}
-              className="text-sm font-medium text-ink/70 transition-colors hover:text-ink"
+              className="text-sm font-medium text-white/70 transition-colors hover:text-white"
             >
               {link.label}
             </a>
@@ -47,6 +46,7 @@ export function SiteHeader() {
             ctaLocation="header"
             variant="ghost"
             size="md"
+            className="text-white hover:bg-white/10"
           >
             Entrar
           </AppCtaLink>
@@ -64,7 +64,7 @@ export function SiteHeader() {
 
         <button
           type="button"
-          className="inline-flex items-center justify-center rounded-full p-2 text-ink lg:hidden"
+          className="inline-flex items-center justify-center rounded-full p-2 text-white lg:hidden"
           aria-expanded={isMenuOpen}
           aria-controls="mobile-menu"
           aria-label={isMenuOpen ? "Fechar menu" : "Abrir menu"}
@@ -75,14 +75,14 @@ export function SiteHeader() {
       </Container>
 
       {isMenuOpen ? (
-        <div id="mobile-menu" className="border-t border-ink/10 bg-bg lg:hidden">
+        <div id="mobile-menu" className="border-t border-white/10 bg-navy-950 lg:hidden">
           <Container className="flex flex-col gap-1 py-4">
             {NAV_LINKS.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
                 onClick={() => setIsMenuOpen(false)}
-                className="rounded-lg px-3 py-2.5 text-base font-medium text-ink/80 hover:bg-ink/5"
+                className="rounded-lg px-3 py-2.5 text-base font-medium text-white/80 hover:bg-white/5"
               >
                 {link.label}
               </a>

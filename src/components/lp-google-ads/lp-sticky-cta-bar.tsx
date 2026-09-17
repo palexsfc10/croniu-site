@@ -46,13 +46,13 @@ export function LpStickyCtaBar() {
       <AppCtaLink
         href={registerUrl}
         intent="register"
-        ctaName="comecar_gratis_sticky"
+        ctaName="testar_gratis_sticky"
         ctaLocation="lp_ads_sticky"
         size="lg"
         className="w-full justify-center"
         tabIndex={visible ? 0 : -1}
       >
-        Começar grátis por {siteConfig.trialDays} dias
+        Testar grátis por {siteConfig.trialDays} dias
       </AppCtaLink>
     </div>
   );

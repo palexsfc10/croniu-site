@@ -128,9 +128,9 @@ export function register(route) {
       {
         items: [
           {
-            id: "rt1", name: "Revisar plano de treino", type_label: "Rotina",
+            id: "rt1", name: "Revisar anotações do cliente", type_label: "Rotina",
             client_name: "Rafael Nunes", client_id: "c4", overdue: true,
-            due_on: "2026-09-14", occurrence_type: "plan_review",
+            due_on: "2026-09-14", occurrence_type: "notes_review",
           },
           {
             id: "rt2", name: "Enviar feedback da semana", type_label: "Rotina",

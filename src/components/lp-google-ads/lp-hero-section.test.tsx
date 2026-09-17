@@ -13,49 +13,32 @@ describe("LpHeroSection", () => {
     cleanup();
   });
 
-  it("matches the Meta Ads campaign's pain point exactly — eyebrow, H1, subtitle", () => {
+  it("renders the personal-trainer eyebrow, H1 and subtitle", () => {
     render(<LpHeroSection />);
-    expect(screen.getByText("PARA PERSONAL TRAINERS")).toBeInTheDocument();
+    expect(screen.getByText("GESTÃO PARA PERSONAL TRAINERS")).toBeInTheDocument();
     expect(
       screen.getByRole("heading", {
         level: 1,
-        name: "Seu trabalho está espalhado entre WhatsApp, planilhas e agenda?",
+        name: "Você cuida dos seus alunos. O Croniu organiza o restante.",
       }),
     ).toBeInTheDocument();
     expect(
-      screen.getByText("Centralize sua rotina e acompanhe cada aluno com mais clareza."),
+      screen.getByText(
+        "Centralize alunos, agenda, ciclos, avaliações e recebimentos em um único workspace — no computador ou no celular.",
+      ),
     ).toBeInTheDocument();
   });
 
   it("renders the CTA text and microcopy exactly, pointing at app.croniu.com.br/register", () => {
     render(<LpHeroSection />);
-    const link = screen.getByRole("link", { name: /Começar grátis por 7 dias/ });
+    const link = screen.getByRole("link", { name: /Testar grátis por 7 dias/ });
     expect(link).toHaveAttribute("href", "https://app.croniu.com.br/register");
-    expect(
-      screen.getByText("Sem cartão de crédito. Funciona no computador e no celular."),
-    ).toBeInTheDocument();
+    expect(screen.getByText("Sem cartão de crédito.")).toBeInTheDocument();
   });
 
-  it("shows real product screenshots (desktop and mobile), not a recreated dashboard", () => {
+  it("shows the real Croniu Workspace home screen, not a recreated dashboard", () => {
     render(<LpHeroSection />);
-    const desktop = screen.getByAltText(/tela inicial do croniu no computador/i);
-    const mobile = screen.getByAltText(/tela inicial do croniu no celular/i);
-    expect(desktop).toHaveAttribute("src", expect.stringContaining("home-desktop.png"));
-    expect(mobile).toHaveAttribute("src", expect.stringContaining("home-mobile.png"));
-  });
-
-  it("no longer shows the AI conversation demo — that moved to LpAssistantSection", () => {
-    render(<LpHeroSection />);
-    expect(
-      screen.queryByLabelText(/exemplo de conversa com o assistente/i),
-    ).not.toBeInTheDocument();
-  });
-
-  it("shows the WhatsApp + Planilhas + Agenda → Croniu transition labels", () => {
-    render(<LpHeroSection />);
-    expect(screen.getByText("WhatsApp")).toBeInTheDocument();
-    expect(screen.getByText("Planilhas")).toBeInTheDocument();
-    expect(screen.getByText("Agenda")).toBeInTheDocument();
-    expect(screen.getByText("Croniu")).toBeInTheDocument();
+    const desktop = screen.getByAltText(/tela inicial do croniu workspace/i);
+    expect(desktop).toHaveAttribute("src", expect.stringContaining("inicio.png"));
   });
 });

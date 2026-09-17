@@ -21,7 +21,7 @@ describe("LpStickyCtaBar", () => {
 
   it("stays hidden (translated off-screen) before the visitor scrolls past the hero", () => {
     render(<LpStickyCtaBar />);
-    const link = screen.getByRole("link", { name: /começar grátis/i, hidden: true });
+    const link = screen.getByRole("link", { name: /testar grátis/i, hidden: true });
     expect(link.closest("div[aria-hidden]")).toHaveAttribute("aria-hidden", "true");
     expect(link).toHaveAttribute("tabindex", "-1");
   });
@@ -32,7 +32,7 @@ describe("LpStickyCtaBar", () => {
       setScrollY(600);
       window.dispatchEvent(new Event("scroll"));
     });
-    const link = screen.getByRole("link", { name: /começar grátis/i });
+    const link = screen.getByRole("link", { name: /testar grátis/i });
     expect(link.closest("div[aria-hidden]")).toHaveAttribute("aria-hidden", "false");
     expect(link).toHaveAttribute("tabindex", "0");
   });
@@ -44,21 +44,21 @@ describe("LpStickyCtaBar", () => {
       window.dispatchEvent(new Event("scroll"));
     });
     expect(
-      screen.getByRole("link", { name: /começar grátis/i }).closest("div[aria-hidden]"),
+      screen.getByRole("link", { name: /testar grátis/i }).closest("div[aria-hidden]"),
     ).toHaveAttribute("aria-hidden", "false");
 
     act(() => {
       window.dispatchEvent(new CustomEvent(CONSENT_BANNER_VISIBILITY_EVENT, { detail: true }));
     });
     expect(
-      screen.getByRole("link", { name: /começar grátis/i, hidden: true }).closest("div[aria-hidden]"),
+      screen.getByRole("link", { name: /testar grátis/i, hidden: true }).closest("div[aria-hidden]"),
     ).toHaveAttribute("aria-hidden", "true");
 
     act(() => {
       window.dispatchEvent(new CustomEvent(CONSENT_BANNER_VISIBILITY_EVENT, { detail: false }));
     });
     expect(
-      screen.getByRole("link", { name: /começar grátis/i }).closest("div[aria-hidden]"),
+      screen.getByRole("link", { name: /testar grátis/i }).closest("div[aria-hidden]"),
     ).toHaveAttribute("aria-hidden", "false");
   });
 });
