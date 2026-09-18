@@ -12,9 +12,15 @@ export function FragmentedRoutineSection() {
           description="Mensagem no WhatsApp, horário que muda, avaliação anotada num bloco de notas, recebimento numa planilha à parte. Quando chega a hora de organizar, você não deveria começar procurando informações."
         />
         <ScatteredRoutineDemo />
-        <p className="mx-auto max-w-lg text-center font-display text-xl font-semibold text-ink sm:text-2xl">
-          O Croniu transforma informações espalhadas em uma rotina sob controle.
-        </p>
+        <div className="mx-auto flex max-w-lg flex-col gap-2 text-center">
+          <p className="font-display text-xl font-semibold text-ink sm:text-2xl">
+            O Croniu transforma informações espalhadas em uma rotina sob controle.
+          </p>
+          <p className="text-sm text-ink/60 sm:text-base">
+            Ele não decide o que você faz com cada cliente — isso continua só seu. Só garante que nada do
+            que você já decidiu se perca.
+          </p>
+        </div>
       </Container>
     </section>
   );

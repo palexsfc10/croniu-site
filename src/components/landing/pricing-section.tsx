@@ -6,11 +6,11 @@ import { PricingViewTracker } from "@/components/landing/pricing-view-tracker";
 import { formatPriceBRL, registerUrl, siteConfig } from "@/lib/site";
 
 const INCLUDED_ITEMS = [
-  "Clientes, ciclos e serviços ilimitados",
+  "Clientes ilimitados — o preço não sobe conforme sua base cresce",
   "Agenda diária e resumo de prioridades",
-  "Recebimentos e controle de renovações",
+  "Ciclos, renovações e recebimentos organizados",
   "Portal de acompanhamento para seus clientes",
-  "Assistente de IA para consultar sua operação",
+  "Assistente de IA para consultar e agir na sua operação",
 ];
 
 export function PricingSection() {
@@ -21,7 +21,7 @@ export function PricingSection() {
         <SectionHeading
           eyebrow="Preço simples"
           title="Um plano, sem letras miúdas"
-          description={`Teste grátis por ${siteConfig.trialDays} dias, sem cartão de crédito. Depois, ${formatPriceBRL()} por mês.`}
+          description={`Teste grátis por ${siteConfig.trialDays} dias, sem cartão de crédito. Depois, ${formatPriceBRL()} por mês — não importa quantos clientes você atenda.`}
         />
 
         <div className="mx-auto grid w-full max-w-4xl gap-8 lg:grid-cols-[1fr_0.85fr] lg:items-center">

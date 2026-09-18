@@ -4,9 +4,9 @@ import { ogImageSize, OgImageMarkup } from "@/lib/og-image";
 export const size = ogImageSize;
 export const contentType = "image/png";
 
-export default function TwitterImage() {
+export default function OpengraphImage() {
   return new ImageResponse(
-    <OgImageMarkup subtitle="Organize clientes, agenda, ciclos, avaliações e recebimentos em um único workspace." />,
+    <OgImageMarkup subtitle="Você cuida dos seus alunos. O Croniu organiza o restante." />,
     { ...size },
   );
 }

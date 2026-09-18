@@ -48,6 +48,7 @@ const FAQ_ITEMS = [
         .
       </>
     ),
+    schemaAnswer: `Sim. Basta escrever para ${siteConfig.supportEmail} ou pelo WhatsApp ${siteConfig.supportWhatsapp}. Seu acesso segue disponível até o fim do período já pago.`,
   },
   {
     id: "ia_altera_dados",
@@ -57,11 +58,25 @@ const FAQ_ITEMS = [
   },
 ];
 
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: FAQ_ITEMS.map((item) => ({
+    "@type": "Question",
+    name: item.question,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: item.schemaAnswer ?? (typeof item.answer === "string" ? item.answer : ""),
+    },
+  })),
+};
+
 export function LpFaqSection() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
     <section id="duvidas" className="py-16 sm:py-24">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
       <Container className="flex flex-col gap-14">
         <SectionHeading eyebrow="Dúvidas frequentes" title="Perguntas que você pode estar se fazendo" />
 

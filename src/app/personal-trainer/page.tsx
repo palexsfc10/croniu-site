@@ -14,7 +14,7 @@ import { LpFooter } from "@/components/lp-google-ads/lp-footer";
 export const metadata: Metadata = {
   title: "Sistema para personal trainer: agenda, alunos e renovações organizados",
   description:
-    "Chega de espalhar sua rotina entre WhatsApp, planilhas e agenda. O Croniu é o aplicativo para personal trainer que centraliza a organização de alunos, ciclos, renovações e recebimentos — com a Cronia ajudando você a resolver, sempre com sua confirmação antes de agir.",
+    "Chega de espalhar sua rotina entre WhatsApp, planilhas e agenda. O Croniu centraliza alunos, ciclos, renovações e recebimentos num único workspace, com a Cronia ajudando a decidir o que fazer primeiro. 7 dias grátis, sem cartão de crédito.",
   alternates: {
     canonical: "/personal-trainer",
   },

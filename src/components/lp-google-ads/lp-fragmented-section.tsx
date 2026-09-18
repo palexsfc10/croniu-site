@@ -83,10 +83,16 @@ export function LpFragmentedSection() {
           description="Mensagens chegam, horários mudam e informações importantes ficam espalhadas. O problema não é falta de dedicação — é depender de lugares demais para controlar a rotina."
         />
         <ScatteredRoutineDemo signals={PERSONAL_TRAINER_SIGNALS} />
-        <p className="mx-auto max-w-lg text-center font-display text-xl font-semibold text-ink sm:text-2xl">
-          Com o Croniu, alunos, agenda, avaliações, ciclos e recebimentos passam a fazer parte da mesma
-          rotina.
-        </p>
+        <div className="mx-auto flex max-w-lg flex-col gap-2 text-center">
+          <p className="font-display text-xl font-semibold text-ink sm:text-2xl">
+            Com o Croniu, alunos, agenda, avaliações, ciclos e recebimentos passam a fazer parte da mesma
+            rotina.
+          </p>
+          <p className="text-sm text-ink/60 sm:text-base">
+            Ele não decide o que você faz com cada aluno — isso continua só seu. Só garante que nada do
+            que você já decidiu se perca.
+          </p>
+        </div>
       </Container>
     </section>
   );
