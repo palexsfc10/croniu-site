@@ -189,3 +189,22 @@ export function IconReplay(props: IconProps) {
     </svg>
   );
 }
+
+export function IconClipboard(props: IconProps) {
+  return (
+    <svg {...base(props)}>
+      <rect x="6" y="4" width="12" height="17" rx="2" />
+      <path d="M9 4V3a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v1M9 11h6M9 15h4" />
+    </svg>
+  );
+}
+
+export function IconUserPlus(props: IconProps) {
+  return (
+    <svg {...base(props)}>
+      <circle cx="9" cy="8" r="3.5" />
+      <path d="M2.5 20a6.5 6.5 0 0 1 13 0" />
+      <path d="M18 8v6M15 11h6" />
+    </svg>
+  );
+}

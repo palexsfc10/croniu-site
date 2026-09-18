@@ -7,7 +7,7 @@ export function FinalCtaSection() {
   return (
     <section className="py-20 sm:py-28">
       <Container>
-        <div className="flex flex-col items-center gap-6 rounded-3xl bg-gradient-to-br from-ink to-brand-800 px-6 py-16 text-center text-white sm:px-12">
+        <div className="flex flex-col items-center gap-6 rounded-3xl bg-gradient-to-br from-navy-900 to-brand-800 px-6 py-16 text-center text-white sm:px-12">
           <h2 className="font-display max-w-2xl text-3xl font-semibold tracking-tight sm:text-4xl">
             Comece a organizar sua rotina hoje
           </h2>
@@ -23,7 +23,7 @@ export function FinalCtaSection() {
             variant="secondary"
             size="lg"
           >
-            Começar grátis por {siteConfig.trialDays} dias
+            Começar grátis
             <IconArrowRight width={18} height={18} />
           </AppCtaLink>
         </div>

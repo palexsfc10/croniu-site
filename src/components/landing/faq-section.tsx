@@ -8,6 +8,12 @@ import { IconChevronDown } from "@/components/ui/icons";
 import { trackFaqInteraction } from "@/lib/analytics/gtm";
 import { formatPriceBRL, siteConfig } from "@/lib/site";
 
+/**
+ * `schemaAnswer` é o texto puro para o FAQPage JSON-LD — precisa bater com o
+ * que a página mostra (exigência do Google para rich snippets), então
+ * quando `answer` é JSX (com links), `schemaAnswer` traz a mesma resposta
+ * em texto corrido.
+ */
 const FAQ_ITEMS = [
   {
     id: "computador_celular",
@@ -42,6 +48,7 @@ const FAQ_ITEMS = [
         .
       </>
     ),
+    schemaAnswer: `Sim. Basta escrever para ${siteConfig.supportEmail} ou pelo WhatsApp ${siteConfig.supportWhatsapp}. Seu acesso segue disponível até o fim do período já pago.`,
   },
   {
     id: "cobranca_automatica",
@@ -69,11 +76,25 @@ const FAQ_ITEMS = [
   },
 ];
 
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: FAQ_ITEMS.map((item) => ({
+    "@type": "Question",
+    name: item.question,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: item.schemaAnswer ?? (typeof item.answer === "string" ? item.answer : ""),
+    },
+  })),
+};
+
 export function FaqSection() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
     <section id="duvidas" className="py-20 sm:py-28">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
       <Container className="flex flex-col gap-14">
         <SectionHeading eyebrow="Dúvidas frequentes" title="Perguntas que você pode estar se fazendo" />
 

@@ -17,21 +17,18 @@ vi.mock("@/lib/analytics/gtm", () => ({
  * own test file.
  */
 describe("PersonalTrainerLpPage narrative order", () => {
-  it("follows: dor → solução centralizadora → provas reais → benefícios → Cronia/IA → teste grátis", () => {
+  it("follows: solução imediata → rotina fragmentada → produto → Cronia → dispositivos → teste grátis", () => {
     const { container } = render(<PersonalTrainerLpPage />);
     const headings = Array.from(container.querySelectorAll("h1, h2")).map(
       (el) => el.textContent?.trim(),
     );
 
     const expectedOrder = [
-      "Seu trabalho está espalhado entre WhatsApp, planilhas e agenda?",
-      "Tudo que hoje está espalhado, agora em um só lugar",
+      "Você cuida dos seus alunos. O Croniu organiza o restante.",
+      "Entre uma aula e outra, a informação se espalha",
       "O Croniu, do jeito que ele é",
-      "Gerenciar tudo de cabeça deixa de funcionar em algum ponto",
-      "Uma lista clara do que precisa de decisão hoje",
-      "Agenda, alunos, ciclos, renovações e financeiro",
-      "Organize no computador. Resolva pelo celular.",
       "A Cronia consulta sua operação — e nunca age sozinha",
+      "No computador para organizar. No celular para acompanhar.",
       "Três passos para organizar sua rotina",
       "Perguntas que você pode estar se fazendo",
       "Comece a organizar a sua agenda hoje",

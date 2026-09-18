@@ -6,7 +6,7 @@ export const contentType = "image/png";
 
 export default function OpengraphImage() {
   return new ImageResponse(
-    <OgImageMarkup subtitle="Sua rotina organizada. Seus clientes acompanhados. Uma IA trabalhando com você." />,
+    <OgImageMarkup subtitle="Organize clientes, agenda, ciclos, avaliações e recebimentos em um único workspace." />,
     { ...size },
   );
 }

@@ -6,21 +6,21 @@ import { registerUrl } from "@/lib/site";
 /** Minimal header for the Google Ads landing page: no nav menu, no /login link — a single path to conversion. */
 export function LpHeader() {
   return (
-    <header className="sticky top-0 z-50 border-b border-ink/10 bg-bg/85 backdrop-blur-md">
+    <header className="sticky top-0 z-50 border-b border-white/10 bg-navy-950/90 backdrop-blur-md">
       <Container className="flex h-16 items-center justify-between">
         <span className="flex items-baseline gap-1.5">
-          <BrandWordmark size="md" />
-          <span className="text-xs font-medium text-ink/40 sm:text-sm">Workspace</span>
+          <BrandWordmark size="md" tone="dark" />
+          <span className="text-xs font-medium text-white/40 sm:text-sm">Workspace</span>
         </span>
         <AppCtaLink
           href={registerUrl}
           intent="register"
-          ctaName="comecar_gratis_header"
+          ctaName="testar_gratis_header"
           ctaLocation="lp_ads_header"
           variant="primary"
           size="md"
         >
-          Começar grátis
+          Testar grátis
         </AppCtaLink>
       </Container>
     </header>

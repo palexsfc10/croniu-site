@@ -16,14 +16,14 @@ describe("LpAssistantSection", () => {
     expect(
       screen.getByRole("heading", { name: /a cronia consulta sua operação/i }),
     ).toBeInTheDocument();
-    expect(screen.getByAltText(/tela da cronia/i)).toBeInTheDocument();
+    expect(screen.getByAltText(/cronia no celular/i)).toBeInTheDocument();
   });
 
-  it("now also shows the conversation example repositioned from the hero", () => {
+  it("shows the 'Como está meu dia?' conversation example with real operation data", () => {
     render(<LpAssistantSection />);
     expect(
       screen.getByLabelText(/exemplo de conversa com o assistente/i),
     ).toBeInTheDocument();
-    expect(screen.getByText(/quais alunos têm ciclo terminando essa semana/i)).toBeInTheDocument();
+    expect(screen.getByText(/Como está meu dia\?/i)).toBeInTheDocument();
   });
 });

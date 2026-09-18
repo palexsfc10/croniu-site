@@ -11,7 +11,7 @@ export function OgImageMarkup({ subtitle }: { subtitle: string }) {
         justifyContent: "center",
         gap: 28,
         padding: "80px 96px",
-        background: "linear-gradient(135deg, #152033 0%, #2f3f8f 100%)",
+        background: "linear-gradient(135deg, #05070f 0%, #372f9e 100%)",
         color: "#ffffff",
         fontFamily: "sans-serif",
       }}

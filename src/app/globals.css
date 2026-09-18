@@ -36,6 +36,13 @@
   --color-wordmark-from: #152033;
   --color-wordmark-to: #2f3f8f;
 
+  /* Navy quase-preto para hero e blocos escuros — distinto de --color-ink
+     (que continua sendo o token de texto sobre fundo claro). */
+  --color-navy-950: #05070f;
+  --color-navy-900: #0b0f1f;
+  --color-navy-800: #141b35;
+  --color-navy-700: #1e274a;
+
   --font-sans: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
   --font-display: var(--font-fraunces), Georgia, serif;
 }
@@ -138,5 +145,34 @@ body {
 
   .croniu-demo-progress {
     transform: scaleX(1);
+  }
+}
+
+/* Rotina fragmentada → Workspace: a posição espalhada, a convergência (cartão
+   se aproxima do centro E desaparece, nunca fica opaco empilhado) e o
+   respeito a prefers-reduced-motion são calculados por cartão em
+   scattered-routine-demo.tsx (via `style`), não aqui — isso deixa o estado
+   convergido verificável direto em teste (element.style), sem depender do
+   motor de CSS real. */
+
+/* Entrada suave para composições "estrela" acima da dobra (hero, Cronia). */
+@keyframes croniu-rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.croniu-rise-in {
+  animation: croniu-rise-in 650ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .croniu-rise-in {
+    animation: none;
   }
 }

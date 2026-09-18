@@ -25,18 +25,21 @@ const fraunces = Fraunces({
   weight: ["400", "500", "600", "700"],
 });
 
+const title = "Croniu — gestão de clientes, agenda e renovações em um só lugar";
 const description =
-  "Croniu organiza ciclos, recebimentos, renovações e a agenda de profissionais com clientes recorrentes — com uma IA que consulta sua operação e nunca age sem confirmação.";
+  "Organize clientes, agenda, ciclos, avaliações e recebimentos em um único workspace, com uma IA que ajuda a decidir o que fazer primeiro. 7 dias grátis, sem cartão.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.siteUrl),
   title: {
-    default: "Croniu — sua rotina organizada, com uma IA trabalhando com você",
+    default: title,
     template: "%s · Croniu",
   },
   description,
   keywords: [
     "gestão de clientes recorrentes",
+    "CRM para personal trainer",
+    "sistema para personal trainer",
     "agenda para profissionais autônomos",
     "ciclos de aulas",
     "renovação de clientes",
@@ -49,12 +52,12 @@ export const metadata: Metadata = {
     locale: "pt_BR",
     url: siteConfig.siteUrl,
     siteName: "Croniu",
-    title: "Croniu — sua rotina organizada, com uma IA trabalhando com você",
+    title,
     description,
   },
   twitter: {
     card: "summary_large_image",
-    title: "Croniu — sua rotina organizada, com uma IA trabalhando com você",
+    title,
     description,
   },
   icons: {
@@ -69,7 +72,7 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  themeColor: "#152033",
+  themeColor: "#05070f",
 };
 
 const softwareApplicationJsonLd = {

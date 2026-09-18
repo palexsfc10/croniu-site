@@ -1,6 +1,5 @@
 import { Container } from "@/components/ui/container";
 import { SectionHeading } from "@/components/ui/section-heading";
-import { ProductScreenshot } from "@/components/ui/product-screenshot";
 
 const STEPS = [
   {
@@ -26,15 +25,7 @@ export function LpStepsSection() {
       <Container className="flex flex-col gap-14">
         <SectionHeading eyebrow="Como começar" title="Três passos para organizar sua rotina" />
 
-        <div className="grid gap-10 lg:grid-cols-2 lg:items-center">
-          <ProductScreenshot
-            src="/images/lp-personal-trainer/convite-aluno.png"
-            alt="Modal de convite de aluno do Croniu, com opção de enviar pelo WhatsApp ou copiar o link"
-            width={1596}
-            height={622}
-            sizes="(min-width: 1024px) 524px, calc(100vw - 32px)"
-          />
-
+        <div className="mx-auto w-full max-w-2xl">
           <ol className="flex flex-col gap-6">
             {STEPS.map((step) => (
               <li key={step.number} className="flex items-start gap-4">

@@ -41,6 +41,22 @@ describe("FaqSection", () => {
     expect(screen.getByText(/cobrança dos seus clientes finais continua sendo feita por você/i)).toBeInTheDocument();
   });
 
+  it("emits a matching FAQPage JSON-LD for rich snippets, with no leftover JSX in the answer text", () => {
+    const { container } = render(<FaqSection />);
+    const script = container.querySelector('script[type="application/ld+json"]');
+    expect(script).not.toBeNull();
+    const data = JSON.parse(script!.innerHTML) as {
+      "@type": string;
+      mainEntity: { name: string; acceptedAnswer: { text: string } }[];
+    };
+    expect(data["@type"]).toBe("FAQPage");
+    expect(data.mainEntity).toHaveLength(8);
+    expect(data.mainEntity[0]!.name).toBe("Funciona no computador e no celular?");
+    const cancelAnswer = data.mainEntity.find((q) => q.name === "Posso cancelar quando quiser?");
+    expect(cancelAnswer!.acceptedAnswer.text).toContain("appcroniu@gmail.com");
+    expect(cancelAnswer!.acceptedAnswer.text).not.toContain("[object Object]");
+  });
+
   it("expands and collapses an answer on click", async () => {
     const user = userEvent.setup();
     render(<FaqSection />);

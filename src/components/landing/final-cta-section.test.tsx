@@ -11,7 +11,7 @@ vi.mock("@/lib/analytics/gtm", () => ({
 describe("FinalCtaSection", () => {
   it("renders the CTA with readable text on its background (regression: was white text on a white button)", () => {
     render(<FinalCtaSection />);
-    const link = screen.getByRole("link", { name: /Começar grátis por/i });
+    const link = screen.getByRole("link", { name: /Começar grátis/i });
     expect(link.className).not.toMatch(/\btext-white\b/);
     expect(link.className).toMatch(/\btext-ink\b/);
   });

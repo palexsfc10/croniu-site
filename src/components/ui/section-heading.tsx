@@ -8,6 +8,7 @@ export function SectionHeading({
   title,
   description,
   align = "center",
+  tone = "light",
   className,
 }: {
   eyebrow?: string;
@@ -15,8 +16,11 @@ export function SectionHeading({
   title: ReactNode;
   description?: ReactNode;
   align?: "center" | "left";
+  /** "dark" flips text colors for use on navy/dark section backgrounds. */
+  tone?: "light" | "dark";
   className?: string;
 }) {
+  const isDark = tone === "dark";
   return (
     <div
       className={cn(
@@ -26,8 +30,17 @@ export function SectionHeading({
       )}
     >
       {eyebrow ? <Badge variant={eyebrowVariant}>{eyebrow}</Badge> : null}
-      <h2 className="font-display text-3xl font-semibold tracking-tight text-ink sm:text-4xl">{title}</h2>
-      {description ? <p className="text-base text-ink/70 sm:text-lg">{description}</p> : null}
+      <h2
+        className={cn(
+          "font-display text-3xl font-semibold tracking-tight sm:text-4xl",
+          isDark ? "text-white" : "text-ink",
+        )}
+      >
+        {title}
+      </h2>
+      {description ? (
+        <p className={cn("text-base sm:text-lg", isDark ? "text-white/70" : "text-ink/70")}>{description}</p>
+      ) : null}
     </div>
   );
 }

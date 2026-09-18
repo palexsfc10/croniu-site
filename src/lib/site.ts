@@ -3,11 +3,6 @@ const DEFAULT_APP_URL = "https://app.croniu.com.br";
 const DEFAULT_PRICE_CENTS = 2990;
 const DEFAULT_TRIAL_DAYS = 7;
 
-function readBoolEnv(value: string | undefined, fallback: boolean): boolean {
-  if (value === undefined || value === "") return fallback;
-  return value === "true" || value === "1";
-}
-
 function readIntEnv(value: string | undefined, fallback: number): number {
   const parsed = Number.parseInt(value ?? "", 10);
   return Number.isFinite(parsed) ? parsed : fallback;
@@ -28,7 +23,6 @@ export const siteConfig = {
   trialDays: readIntEnv(process.env.NEXT_PUBLIC_TRIAL_DAYS, DEFAULT_TRIAL_DAYS),
   supportEmail: process.env.NEXT_PUBLIC_SUPPORT_EMAIL || DEFAULT_SUPPORT_EMAIL,
   supportWhatsapp: "(11) 98450-8374",
-  aiActionDemosEnabled: readBoolEnv(process.env.NEXT_PUBLIC_AI_ACTION_DEMOS, false),
 } as const;
 
 /**
