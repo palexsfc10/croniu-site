@@ -8,7 +8,10 @@ import { WorkspaceHomeDemo } from "./workspace-home-demo";
  */
 export function ResponsiveWorkspaceDemo() {
   return (
-    <div className="grid gap-10 lg:grid-cols-[1.4fr_1fr] lg:items-end">
+    // `items-start` alinha os dois rótulos na mesma linha de base. Com
+    // `items-end`, as colunas de alturas diferentes empurravam "Computador"
+    // para bem abaixo de "Celular", e o desencontro parecia acidental.
+    <div className="grid gap-10 lg:grid-cols-[1.4fr_1fr] lg:items-start">
       <div className="flex flex-col gap-3">
         <p className="flex items-center gap-2 text-sm font-semibold text-ink/60">
           <IconMonitor width={18} height={18} />

@@ -176,3 +176,38 @@ body {
     animation: none;
   }
 }
+
+/* --- Recorte de tela do produto (ProductCrop) -------------------------------
+   As medidas do enquadramento entram como variáveis sem unidade para o mesmo
+   <img> atender desktop e celular. A alternativa — duas <img> trocadas por
+   `display:none` — fazia o celular baixar também a imagem escondida, e no
+   maior tamanho do srcset, porque um elemento sem layout não resolve `sizes`. */
+
+.croniu-crop {
+  --crop-left: var(--crop-left-lg);
+  --crop-top: var(--crop-top-lg);
+  --crop-width: var(--crop-width-lg);
+  --crop-height: var(--crop-height-lg);
+  --crop-ratio: var(--crop-ratio-lg);
+}
+
+@media (max-width: 1023px) {
+  .croniu-crop {
+    --crop-left: var(--crop-left-sm);
+    --crop-top: var(--crop-top-sm);
+    --crop-width: var(--crop-width-sm);
+    --crop-height: var(--crop-height-sm);
+    --crop-ratio: var(--crop-ratio-sm);
+  }
+}
+
+.croniu-crop-window {
+  aspect-ratio: var(--crop-ratio);
+}
+
+.croniu-crop-image {
+  width: calc(100% * 100 / var(--crop-width));
+  height: auto;
+  left: calc(-100% * var(--crop-left) / var(--crop-width));
+  top: calc(-100% * var(--crop-top) / var(--crop-height));
+}
