@@ -19,9 +19,6 @@ export default function HomePage() {
 
       <section className="relative w-full max-w-4xl border-y border-[#ff5a1f]/35 py-10 text-center sm:py-14">
         <div role="img" aria-label="CRONIU Labs" className="inline-flex items-center gap-3 text-left">
-          <span aria-hidden="true" className="grid h-10 w-10 place-items-center rounded-full bg-[#ff5a1f] text-xl font-black text-black">
-            C
-          </span>
           <span aria-hidden="true" className="text-2xl font-black tracking-[0.14em] text-white sm:text-3xl">
             CRONIU
           </span>
