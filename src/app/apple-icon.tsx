@@ -13,7 +13,7 @@ export default function AppleIcon() {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          background: "linear-gradient(135deg, #152033 0%, #2f3f8f 100%)",
+          background: "#090909",
           borderRadius: 40,
         }}
       >
@@ -21,14 +21,14 @@ export default function AppleIcon() {
           style={{
             width: 96,
             height: 96,
-            borderRadius: "50%",
-            border: "9px solid #ffffff",
+          borderRadius: "50%",
+          background: "#ff5a1f",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
           }}
         >
-          <div style={{ width: 5, height: 40, background: "#ffffff", borderRadius: 4, transform: "translate(10px, -14px) rotate(35deg)" }} />
+          <span style={{ color: "#090909", fontFamily: "sans-serif", fontSize: 58, fontWeight: 800 }}>C</span>
         </div>
       </div>
     ),

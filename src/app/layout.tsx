@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Fraunces, Manrope } from "next/font/google";
+import { Manrope } from "next/font/google";
 import { siteConfig } from "@/lib/site";
 import "./globals.css";
 
@@ -9,14 +9,7 @@ const manrope = Manrope({
   display: "swap",
 });
 
-const fraunces = Fraunces({
-  subsets: ["latin"],
-  variable: "--font-fraunces",
-  display: "swap",
-  weight: ["400", "500", "600", "700"],
-});
-
-const title = "Croniu — Em manutenção";
+const title = "CRONIU Labs — Em manutenção";
 const description = "Estamos preparando uma nova experiência.";
 
 export const metadata: Metadata = {
@@ -28,7 +21,7 @@ export const metadata: Metadata = {
     type: "website",
     locale: "pt_BR",
     url: siteConfig.siteUrl,
-    siteName: "Croniu",
+    siteName: "CRONIU Labs",
     title,
     description,
   },
@@ -49,13 +42,13 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  themeColor: "#05070f",
+  themeColor: "#ff5a1f",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="pt-BR" className={`${manrope.variable} ${fraunces.variable}`}>
-      <body className="min-h-screen bg-navy-950 font-sans text-white antialiased">{children}</body>
+    <html lang="pt-BR" className={manrope.variable}>
+      <body className="min-h-screen bg-[#090909] font-sans text-white antialiased">{children}</body>
     </html>
   );
 }

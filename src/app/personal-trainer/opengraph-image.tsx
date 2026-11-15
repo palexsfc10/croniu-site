@@ -6,7 +6,7 @@ export const contentType = "image/png";
 
 export default function OpengraphImage() {
   return new ImageResponse(
-    <OgImageMarkup subtitle="Você cuida dos seus alunos. O Croniu organiza o restante." />,
+    <OgImageMarkup />,
     { ...size },
   );
 }
