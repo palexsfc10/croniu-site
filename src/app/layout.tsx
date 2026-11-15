@@ -1,14 +1,5 @@
 import type { Metadata, Viewport } from "next";
 import { Fraunces, Manrope } from "next/font/google";
-import { ServiceWorkerCleanup } from "@/components/pwa/service-worker-cleanup";
-import {
-  GtmConsentDefaultScript,
-  GtmContainerScript,
-  GtmNoscriptFallback,
-} from "@/components/analytics/gtm-scripts";
-import { ConsentBanner } from "@/components/analytics/consent-banner";
-import { RoutePageviewTracker } from "@/components/analytics/route-pageview-tracker";
-import { MetaPixelScripts } from "@/components/analytics/meta-pixel-scripts";
 import { siteConfig } from "@/lib/site";
 import "./globals.css";
 
@@ -25,28 +16,14 @@ const fraunces = Fraunces({
   weight: ["400", "500", "600", "700"],
 });
 
-const title = "Croniu — gestão de clientes, agenda e renovações em um só lugar";
-const description =
-  "Organize clientes, agenda, ciclos, avaliações e recebimentos em um único workspace, com uma IA que ajuda a decidir o que fazer primeiro. 7 dias grátis, sem cartão.";
+const title = "Croniu — Em manutenção";
+const description = "Estamos preparando uma nova experiência.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.siteUrl),
-  title: {
-    default: title,
-    template: "%s · Croniu",
-  },
+  title,
   description,
-  keywords: [
-    "gestão de clientes recorrentes",
-    "CRM para personal trainer",
-    "sistema para personal trainer",
-    "agenda para profissionais autônomos",
-    "ciclos de aulas",
-    "renovação de clientes",
-    "software para personal trainer",
-    "software para professores particulares",
-  ],
-  authors: [{ name: "NTWS Labs" }],
+  robots: { index: false, follow: false },
   openGraph: {
     type: "website",
     locale: "pt_BR",
@@ -56,7 +33,7 @@ export const metadata: Metadata = {
     description,
   },
   twitter: {
-    card: "summary_large_image",
+    card: "summary",
     title,
     description,
   },
@@ -75,52 +52,10 @@ export const viewport: Viewport = {
   themeColor: "#05070f",
 };
 
-const softwareApplicationJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "SoftwareApplication",
-  name: "Croniu",
-  applicationCategory: "BusinessApplication",
-  operatingSystem: "Web",
-  url: siteConfig.siteUrl,
-  description,
-  offers: {
-    "@type": "Offer",
-    price: (siteConfig.priceCents / 100).toFixed(2),
-    priceCurrency: "BRL",
-  },
-};
-
-const organizationJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  name: "Croniu",
-  url: siteConfig.siteUrl,
-  logo: `${siteConfig.siteUrl}/icons/icon.svg`,
-};
-
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="pt-BR" className={`${manrope.variable} ${fraunces.variable}`}>
-      <head>
-        <GtmConsentDefaultScript />
-        <GtmContainerScript />
-      </head>
-      <body className="min-h-screen bg-bg font-sans text-ink antialiased">
-        <GtmNoscriptFallback />
-        <ServiceWorkerCleanup />
-        <RoutePageviewTracker />
-        {children}
-        <MetaPixelScripts />
-        <ConsentBanner />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareApplicationJsonLd) }}
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
-        />
-      </body>
+      <body className="min-h-screen bg-navy-950 font-sans text-white antialiased">{children}</body>
     </html>
   );
 }
